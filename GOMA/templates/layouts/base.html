@@ -1,12 +1,15 @@
+<!-- Esta es la plantilla que se usará en las demás páginas, para eso se utiliza la sintaxis de Jinja2 -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Esta sintaxis cambiara para cada titulo de las demás páginas -->
     <title>{% block title %} GOMA Comercializadora {% endblock %}</title>
 </head>
 <body>
 
+    <!-- Este es el menu, aqui van a ir los enlaces a las páginas adicionales -->
     <nav>
         <ul>
             <li><a href="#">Inicio</a></li>
@@ -17,6 +20,7 @@
         </ul>
     </nav>
     
+    <!-- Dentro de Este apartado "iran" los contenidos de las páginas -->
     {% block content %}
     {% endblock %}
     
