@@ -11,14 +11,19 @@
 </head>
 <body>
 
-    <!-- Este es el menu, aqui van a ir los enlaces a las páginas adicionales -->
+    <!-- Este es el menu, aqui van a ir los enlaces a las páginas adicionales, pueden modificar -->
     <nav>
         <ul>
-            <li><a href="#">Inicio</a></li>
+            <li><a href="{% url 'home' %}">Inicio</a></li>
             <li><a href="#">Productos</a></li>
             <li><a href="#">Sobre Nosotros</a></li>
             <li><a href="#">Marcas</a></li>
             <li><a href="#">Proveedores</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
+            {% else %}
+                <li><a href="{% url 'registrar' %}">Inicio de Sesión o Registro</a></li>
+            {% endif %}
         </ul>
     </nav>
     

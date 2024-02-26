@@ -8,11 +8,20 @@
 {% block content %}
 
     <!-- Agregar la información -->
-    <h1>GOMA Comercializadora</h1>
-    {% if request.user.is_authenticated %}
-        <h2>Hola {{ request.user.username }}</h2>
-    {% else %}
-        <h2>Bienvenido</h2>
-    {% endif %}
+    <h1>Registrarse</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Registrarse</button>
+    </form>
+
+    <h1>Iniciar Sesión</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ formLogin.as_p }}
+        <button>Iniciar Sesión</button>
+    </form>
 
 {% endblock %}
