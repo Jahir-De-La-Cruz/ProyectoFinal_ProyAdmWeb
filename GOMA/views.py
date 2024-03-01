@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
+from .models import Post
 
 # Create your views here.
 def index(request):
@@ -55,3 +56,8 @@ def registrar(request):
 def cerrar_sesion(request):
     logout(request)
     return redirect('home')
+
+def blog(request):
+    return render(request, 'blog.html', {
+        'posts' : Post
+    })

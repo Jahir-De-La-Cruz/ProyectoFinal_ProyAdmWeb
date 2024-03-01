@@ -19,6 +19,7 @@
             <li><a href="#">Sobre Nosotros</a></li>
             <li><a href="#">Marcas</a></li>
             <li><a href="#">Proveedores</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
             {% else %}

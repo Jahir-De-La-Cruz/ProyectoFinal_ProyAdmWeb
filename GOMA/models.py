@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Marca(models.Model):
@@ -52,3 +53,15 @@ class CompraProducto(models.Model):
     
     def __str__(self):
         return f"Cliente: {self.compra.nombreCompleto} - Producto: {self.producto.nombre} - {self.cantidad} unidades"
+    
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    products_mentioned = models.ManyToManyField('Producto', related_name='mentioned_in_posts')
+
+    def __str__(self):
+        return self.title

@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.index, name="home"),
     path('registrar/', views.registrar, name="registrar"),
     path('cerrar_sesion/', views.cerrar_sesion, name="cerrar_sesion"),
+    path('blog/', views.blog, name="blog"),
 ]
