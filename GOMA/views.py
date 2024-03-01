@@ -5,11 +5,13 @@ from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from .models import Post
+from .forms import ProductosForm, CreatePostForm
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
+# Vista que permite tanto logearse como registrarse en el sitio web, con autenticación y validaciones
 def registrar(request):
     if request.method == 'GET':
         return render(request, 'registro.html', {
@@ -52,12 +54,21 @@ def registrar(request):
                     'usuario': Usuario
                 })
             
+            
+# Vista que destruye la sesión que se haya iniciado
 @login_required
 def cerrar_sesion(request):
     logout(request)
     return redirect('home')
 
+# Vista que retorna el blog y envia como parametro una variable que contiene un array con todos los posts en la db
 def blog(request):
     return render(request, 'blog.html', {
         'posts' : Post
+    })
+    
+# Vista para crear blogs
+def crear_nuevo_blog(request):
+    return render(request, 'crear_blog.html', {
+        'form' : CreatePostForm
     })

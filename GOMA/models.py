@@ -31,6 +31,7 @@ class Producto(models.Model):
     disponibilidad = models.BooleanField(default=True)
     marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to="productos", null=True)
     
     def __str__(self):
         return self.nombre + " - " + "Cantidad: " + str(self.cantidad) + " unidades"
@@ -62,6 +63,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     products_mentioned = models.ManyToManyField('Producto', related_name='mentioned_in_posts')
+    image = models.ImageField(upload_to="posts", null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return self.title + " - Creado el: " + self.created_at

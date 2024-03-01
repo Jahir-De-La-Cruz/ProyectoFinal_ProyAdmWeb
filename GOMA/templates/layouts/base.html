@@ -21,6 +21,7 @@
             <li><a href="#">Proveedores</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
             {% if user.is_authenticated %}
+                <li><a href="{% url 'nuevo_blog' %}">Crear Post</a></li>
                 <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
             {% else %}
                 <li><a href="{% url 'registrar' %}">Inicio de Sesión o Registro</a></li>

@@ -1,0 +1,22 @@
+<!-- Esta es la página para añadir un blog, no modificar la sintaxis de jinja ya establecida aqui, dentro de la 
+    carpeta templates iran los archivos HTML, los archivos CSS, JS e IMG, irán en la carpeta static -->
+
+<!-- Esto hace mención a que va a heredar el contenido de la página "base.html" -->
+{% extends 'layouts/base.html' %}
+
+<!-- Aqui se modifica al titulo correspondiente de la página -->
+{% block title %} Agregar un Nuevo Post {% endblock %}
+
+<!-- Indica el contenido, aquí ira todo lo correspondiente a la página principal, NO modificar la sintaxis jinja -->
+{% block content %}
+
+    <!-- Agregar la información, (MEJOREN LA ESTRUCTURA) -->
+    <h1>Añadir un Nuevo Post</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button>Publicar</button>
+    </form>
+
+{% endblock %}
