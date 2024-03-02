@@ -62,8 +62,7 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    products_mentioned = models.ManyToManyField('Producto', related_name='mentioned_in_posts')
     image = models.ImageField(upload_to="posts", null=True, blank=True)
 
     def __str__(self):
-        return self.title + " - Creado el: " + self.created_at
+        return self.title + " - Creado el: " + str(self.created_at.date())

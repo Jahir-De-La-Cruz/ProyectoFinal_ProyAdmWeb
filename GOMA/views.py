@@ -63,12 +63,32 @@ def cerrar_sesion(request):
 
 # Vista que retorna el blog y envia como parametro una variable que contiene un array con todos los posts en la db
 def blog(request):
+    posts = Post.objects.all()
     return render(request, 'blog.html', {
-        'posts' : Post
+        'posts' : posts
     })
     
 # Vista para crear blogs
 def crear_nuevo_blog(request):
-    return render(request, 'crear_blog.html', {
-        'form' : CreatePostForm
-    })
+    if request.method == 'GET':
+        return render(request, 'crear_blog.html', {
+            'form' : CreatePostForm
+        })
+    else:
+        try:
+            form = CreatePostForm(request.POST, request.FILES)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.save()
+                return redirect('blog')
+            else:
+                return render(request, 'crear_blog.html', {
+                    'form' : CreatePostForm,
+                    'error' : 'Por favor, complete correctamente el formulario.'
+                })
+        except ValueError:
+            return render(request, 'crear_blog.html', {
+                'form' : CreatePostForm,
+                'error' : 'Porfavor ingrese datos validos.'
+            })

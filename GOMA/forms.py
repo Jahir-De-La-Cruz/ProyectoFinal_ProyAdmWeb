@@ -42,7 +42,7 @@ class ProductosForm(forms.ModelForm):
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content', 'products_mentioned', 'image']
+        fields = ['title', 'content', 'image']
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -51,10 +51,6 @@ class CreatePostForm(forms.ModelForm):
             'content': forms.Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Ingrese el contenido del Post'
-            }),
-            'products_mentioned': forms.SelectMultiple(attrs={
-                'class': 'form-control',
-                'placeholder': 'Seleccione los productos mencionados en el post'
             }),
             'image': forms.FileInput(attrs={
                 'class': 'form-control',
