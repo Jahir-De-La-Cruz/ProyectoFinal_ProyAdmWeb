@@ -20,10 +20,12 @@
             <li><a href="#">Marcas</a></li>
             <li><a href="#">Proveedores</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
+            <!-- Estas vistas SOLAMENTE se mostraran si hay un usuario autenticado en la base de datos -->
             {% if user.is_authenticated %}
                 <li><a href="#">Agregar un Nuevo Producto</a></li>
                 <li><a href="{% url 'nuevo_blog' %}">Crear Post</a></li>
                 <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
+            <!-- En caso de no haber un usuario mostrara esta y el resto de vistas -->
             {% else %}
                 <li><a href="{% url 'registrar' %}">Inicio de Sesión o Registro</a></li>
             {% endif %}
