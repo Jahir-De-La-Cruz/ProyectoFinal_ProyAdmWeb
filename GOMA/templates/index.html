@@ -3,16 +3,20 @@
 
 <!-- Esto hace mención a que va a heredar el contenido de la página "base.html" -->
 {% extends 'layouts/base.html' %}
+{% load static %}
 
 <!-- Indica el contenido, aquí ira todo lo correspondiente a la página principal, NO modificar la sintaxis jinja -->
 {% block content %}
 
     <!-- Agregar la información -->
-    <h1>GOMA Comercializadora</h1>
+    <h1>GOMA Refacciones y Lubricantes</h1>
     {% if request.user.is_authenticated %}
         <h2>Hola {{ request.user.username }}</h2>
     {% else %}
         <h2>Bienvenido</h2>
     {% endif %}
+
+    <!-- Aqui va toda la info de la pagina -->
+
 
 {% endblock %}

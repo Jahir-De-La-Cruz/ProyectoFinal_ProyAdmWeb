@@ -7,7 +7,8 @@
     <!-- Esta sintaxis cambiara para cada titulo de las demás páginas -->
     <title>{% block title %} GOMA Comercializadora {% endblock %}</title>
     <!-- Agreguen más hojas de estilo a esta ruta de ser necesario -->
-    <link rel="stylesheet" href="../../static/Css/main.css">
+    <link rel="stylesheet" href="../../static/Css/main.css?v1">
+    <link rel="stylesheet" href="../static/Css/form.css">
 </head>
 <body>
 
@@ -15,14 +16,14 @@
     <nav>
         <ul>
             <li><a href="{% url 'home' %}">Inicio</a></li>
-            <li><a href="#">Productos</a></li>
-            <li><a href="#">Sobre Nosotros</a></li>
-            <li><a href="#">Marcas</a></li>
-            <li><a href="#">Proveedores</a></li>
+            <li><a href="{% url 'productos' %}">Productos</a></li>
+            <li><a href="{% url 'sobre_nosotros' %}">Sobre Nosotros</a></li>
+            <li><a href="{% url 'marcas' %}">Marcas</a></li>
+            <li><a href="{% url 'proveedores' %}">Proveedores</a></li>
             <li><a href="{% url 'blog' %}">Blog</a></li>
             <!-- Estas vistas SOLAMENTE se mostraran si hay un usuario autenticado en la base de datos -->
             {% if user.is_authenticated %}
-                <li><a href="#">Agregar un Nuevo Producto</a></li>
+                <li><a href="{% url 'nuevo_producto' %}">Agregar un Nuevo Producto</a></li>
                 <li><a href="{% url 'nuevo_blog' %}">Crear Post</a></li>
                 <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
             <!-- En caso de no haber un usuario mostrara esta y el resto de vistas -->

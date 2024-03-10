@@ -1,0 +1,25 @@
+<!-- Esta es la página del blog aqui se agregaran novedades que haya como por ejemplo promociones, no modificar la 
+    sintaxis de jinja ya establecida aqui, dentro de la carpeta templates iran los archivos HTML, los archivos CSS, JS
+    e IMG irán en la carpeta static -->
+
+<!-- Esto hace mención a que va a heredar el contenido de la página "base.html" -->
+{% extends 'layouts/base.html' %}
+
+{% block title %} Nuestros Productos {% endblock %}
+
+{% block content %}
+
+    <h1>Nuestros Productos</h1>
+
+    {% for producto in productos %}
+        <div>
+            <h1>{{ producto.nombre }}</h1>
+            <img src="{{ producto.imagen.url }}" alt="{{ producto.imagen }}" width="300">
+            <p><b>Precio: </b>{{ producto.precio }}</p>
+            <p><b>Marca: </b>{{ producto.marca_id.nombre }}</p>
+            <button>Comprar</button>
+            <button>Añadir al Carrito</button>
+        </div>
+    {% endfor %}
+
+{% endblock %}

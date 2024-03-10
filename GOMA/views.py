@@ -4,18 +4,57 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
-from .models import Post
+from .models import Post, Producto
 from .forms import ProductosForm, CreatePostForm
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
+def productos(request):
+    productos = Producto.objects.filter(disponibilidad=True)
+    return render(request, 'productos.html', {
+        'productos' : productos
+    })
+
+def sobre_nosotros(request):
+    return render(request, 'sobre_nosotros.html')
+
+def marcas(request):
+    return render(request, 'marcas.html')
+
+def proveedores(request):
+    return render(request, 'proveedores.html')
+
+@login_required
+def nuevo_producto(request):
+    if request.method == 'GET':
+        return render(request, 'nuevo_producto.html', {
+            'form' : ProductosForm
+        })
+    else:
+        try:
+            form = ProductosForm(request.POST, request.FILES)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.save()
+                return redirect('productos')
+            else:
+                return render(request, 'nuevo_producto.html', {
+                    'form' : ProductosForm,
+                    'error' : 'Porfavor completa correctamente el formulario.'
+                })
+        except ValueError:
+            return render(request, 'crear_blog.html', {
+                'form' : ProductosForm,
+                'error' : 'Porfavor ingrese datos validos.'
+            })
+
 # Vista que permite tanto logearse como registrarse en el sitio web, con autenticación y validaciones
 def registrar(request):
     if request.method == 'GET':
         return render(request, 'registro.html', {
-            'form' : UserCreationForm,
+            'formRegister' : UserCreationForm,
             'formLogin' : AuthenticationForm
         })
     else:
@@ -30,31 +69,30 @@ def registrar(request):
                     })
                 except IntegrityError:
                     return render(request, 'registro.html', {
-                        'form' : UserCreationForm,
+                        'formRegister' : UserCreationForm,
                         'formLogin' : AuthenticationForm,
-                        'error': "El Usuario Ingresado YA Existe."
+                        'errorRegister': "El Usuario Ingresado YA Existe."
                     })
             else:
                 return render(request, 'registro.html', {
-                    'form' : UserCreationForm,
+                    'formRegister' : UserCreationForm,
                     'formLogin' : AuthenticationForm,
-                    'error': "Las Contraseñas NO Coinciden."
+                    'errorRegister': "Las Contraseñas NO Coinciden."
                 })
         else:
             Usuario = authenticate(request, username=request.POST['username'], password=request.POST['password'])
             if Usuario is None:
-                return render(request, 'iniciar_sesion.html', {
-                    'form' : UserCreationForm,
+                return render(request, 'registro.html', {
+                    'formRegister' : UserCreationForm,
                     'formLogin' : AuthenticationForm,
-                    'error': 'Usuario o contraseña incorrectos'
+                    'errorLogin': 'Usuario o contraseña incorrectos'
                 })
             else:
                 login(request, Usuario)
                 return render(request, 'index.html', {
                     'usuario': Usuario
                 })
-            
-            
+                 
 # Vista que destruye la sesión que se haya iniciado
 @login_required
 def cerrar_sesion(request):

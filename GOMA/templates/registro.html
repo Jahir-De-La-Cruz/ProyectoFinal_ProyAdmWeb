@@ -10,23 +10,52 @@
 <!-- Indica el contenido, aquí ira todo lo correspondiente a la página principal, NO modificar la sintaxis jinja -->
 {% block content %}
 
-    <!-- Agregar la información, (MEJOREN LA ESTRUCTURA) -->
-    <h1>Registrarse</h1>
-    <h2>{{ error }}</h2>
-
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button>Registrarse</button>
-    </form>
-
-    <h1>Iniciar Sesión</h1>
-    <h2>{{ error }}</h2>
-
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ formLogin.as_p }}
-        <button>Iniciar Sesión</button>
-    </form>
+<!-- Agregar la información, (MEJOREN LA ESTRUCTURA) -->
+    <div class="contenedor__formularios">
+        <div class="contenedor__formularios-register">
+            <div>
+                <h1>Registrarse</h1>
+                <h3 class="mensaje__Error">{{ errorRegister }}</h3>
+            </div>
+            <form action="" method="POST" autocomplete="off">
+                {% csrf_token %}
+                <div>
+                    <label>Nombre de Usuario</label>
+                    {{ formRegister.username }}
+                </div>
+                <div>
+                    <label>Contraseña</label>
+                    {{ formRegister.password1 }}
+                </div>
+                <div>
+                    <label>Confirmar Contraseña</label>
+                    {{ formRegister.password2 }}
+                </div>
+                <div>
+                    <button>Registrarse</button>
+                </div>
+            </form>
+        </div>
+        <div class="contenedor__formularios-login">
+            <div>
+                <h1>Iniciar Sesión</h1>
+                <h3 class="mensaje__Error">{{ errorLogin }}</h3>
+            </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label>Nombre de Usuario</label>
+                    {{ formLogin.username }}
+                </div>
+                <div>
+                    <label>Contraseña</label>
+                    {{ formLogin.password }}
+                </div>
+                <div>
+                    <button>Iniciar Sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
