@@ -16,22 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from GOMA import views
+from GOMA.views import IndexView, ProductosView, SobreNosotrosView, MarcasView, ProveedoresView, NuevoProductoView, LoginView, SuperusuarioRegistroView, RegistroView, CerrarSesionView, BlogView, CrearNuevoBlogView
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name="home"),
-    path('productos/', views.productos, name="productos"),
-    path('sobre-nosotros/', views.sobre_nosotros, name="sobre_nosotros"),
-    path('marcas/', views.marcas, name="marcas"),
-    path('proveedores/', views.proveedores, name="proveedores"),
-    path('nuevo-producto/', views.nuevo_producto, name="nuevo_producto"),
-    path('registrar/', views.registrar, name="registrar"),
-    path('cerrar_sesion/', views.cerrar_sesion, name="cerrar_sesion"),
-    path('blog/', views.blog, name="blog"),
-    path('crear_nuevo_blog/', views.crear_nuevo_blog, name="nuevo_blog"),
+    path('', IndexView.as_view(), name="home"),
+    path('productos/', ProductosView.as_view(), name="productos"),
+    path('sobre-nosotros/', SobreNosotrosView.as_view(), name="sobre_nosotros"),
+    path('marcas/', MarcasView.as_view(), name="marcas"),
+    path('proveedores/', ProveedoresView.as_view(), name="proveedores"),
+    path('nuevo-producto/', NuevoProductoView.as_view(), name="nuevo_producto"),
+    path('registrar/', RegistroView.as_view(), name="registrar"),
+    path('registrar_super_usuario/', SuperusuarioRegistroView.as_view(), name="registrar_super_usuario"),
+    path('iniciar_sesion/', LoginView.as_view(), name="iniciar_sesion"),
+    path('cerrar_sesion/', CerrarSesionView.as_view(), name="cerrar_sesion"),
+    path('blog/', BlogView.as_view(), name="blog"),
+    path('crear_nuevo_blog/', CrearNuevoBlogView.as_view(), name="nuevo_blog"),
 ]
 
 if settings.DEBUG:

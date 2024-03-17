@@ -5,37 +5,42 @@
 {% extends 'layouts/base.html' %}
 
 <!-- Aqui se modifica al titulo correspondiente de la página -->
-{% block title %} Registrate para ser Cliente {% endblock %}
+{% block title %} Inicia Sesión {% endblock %}
 
 <!-- Indica el contenido, aquí ira todo lo correspondiente a la página principal, NO modificar la sintaxis jinja -->
 {% block content %}
 
 <!-- Agregar la información, (MEJOREN LA ESTRUCTURA) -->
     <div class="contenedor__formularios">
-        <div class="contenedor__formularios-register">
+        <div class="contenedor__formularios-login">
             <div>
-                <h1>Registrarse</h1>
-                <h3 class="mensaje__Error">{{ errorRegister }}</h3>
+                <h1>Iniciar Sesión</h1>
+                
+                {% if messages %}
+                    {% for message in messages %} 
+                        <h3 class="mensaje__Error">{{ message }}</h3>
+                    {% endfor %}
+                {% endif %}
+
+                {% if errorLogin %}
+                    <h3 class="mensaje__Error">{{ errorLogin }}</h3>
+                {% endif %}
             </div>
-            <form action="" method="POST" autocomplete="off">
+            <form action="" method="POST">
                 {% csrf_token %}
                 <div>
                     <label>Nombre de Usuario</label>
-                    {{ formRegister.username }}
+                    {{ formLogin.username }}
                 </div>
                 <div>
                     <label>Contraseña</label>
-                    {{ formRegister.password1 }}
+                    {{ formLogin.password }}
                 </div>
                 <div>
-                    <label>Confirmar Contraseña</label>
-                    {{ formRegister.password2 }}
-                </div>
-                <div>
-                    <button type="submit">Registrarse</button>
+                    <button>Iniciar Sesión</button>
                 </div>
             </form>
         </div>
     </div>
-        
+
 {% endblock %}

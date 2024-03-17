@@ -5,7 +5,7 @@
 {% extends 'layouts/base.html' %}
 
 <!-- Aqui se modifica al titulo correspondiente de la página -->
-{% block title %} Registrate para ser Cliente {% endblock %}
+{% block title %} Agregar SuperUsuarios (SOLO Administradores) {% endblock %}
 
 <!-- Indica el contenido, aquí ira todo lo correspondiente a la página principal, NO modificar la sintaxis jinja -->
 {% block content %}
@@ -14,8 +14,9 @@
     <div class="contenedor__formularios">
         <div class="contenedor__formularios-register">
             <div>
-                <h1>Registrarse</h1>
-                <h3 class="mensaje__Error">{{ errorRegister }}</h3>
+                <h1>Agregar SuperUsuario</h1>
+                <h3 class="mensaje__Error">{{ error }}</h3>
+                <h3 class="mensaje__Success">{{ mensaje }}</h3>
             </div>
             <form action="" method="POST" autocomplete="off">
                 {% csrf_token %}
@@ -32,10 +33,10 @@
                     {{ formRegister.password2 }}
                 </div>
                 <div>
-                    <button type="submit">Registrarse</button>
+                    <button>Registrar SuperUsuario</button>
                 </div>
             </form>
         </div>
     </div>
-        
+
 {% endblock %}

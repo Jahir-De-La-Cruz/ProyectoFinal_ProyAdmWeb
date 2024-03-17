@@ -9,14 +9,15 @@
 {% block content %}
 
     <!-- Agregar la información -->
-    <h1>GOMA Refacciones y Lubricantes</h1>
-    {% if request.user.is_authenticated %}
-        <h2>Hola {{ request.user.username }}</h2>
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+        <h2>Bienvenido Administrador {{ request.user.username }}</h2>
+    {% elif request.user.is_authenticated %}
+        <h2>Hola Nuevamente {{ request.user.username }}</h2>
     {% else %}
         <h2>Bienvenido</h2>
     {% endif %}
 
     <!-- Aqui va toda la info de la pagina -->
 
-
+    
 {% endblock %}
