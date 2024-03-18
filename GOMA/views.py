@@ -61,13 +61,14 @@ class RegistroView(View):
 
     def post(self, request):
         username = request.POST.get('username')
+        email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 
-        if username and password1 and password2:
+        if username and email and password1 and password2:
             if password1 == password2:
                 try:
-                    usuario = User.objects.create_user(username=username, password=password1)
+                    usuario = User.objects.create_user(username=username, email=email, password=password1)
                     usuario.save()
                     login(request, usuario)
                     return redirect('home')
@@ -95,13 +96,14 @@ class SuperusuarioRegistroView(LoginRequiredMixin, AdminRequiredMixin, View):
 
     def post(self, request):
         username = request.POST.get('username')
+        email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
 
         if username and password1 and password2:
             if password1 == password2:
                 try:
-                    user = User.objects.create_user(username=username, password=password1)
+                    user = User.objects.create_user(username=username, email=email, password=password1)
                     user.is_superuser = True
                     user.save()
                     return render(request, 'superusuario_registro.html', {

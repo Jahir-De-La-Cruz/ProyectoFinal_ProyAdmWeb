@@ -25,7 +25,7 @@ class ProductosForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Ingrese la Marca del Producto'
             }),
-            'categoria': forms.SelectMultiple(attrs={
+            'categoria': forms.Select(attrs={
                 'class': 'form-control',
                 'placeholder': 'Seleccione la Categoria del Producto'
             }),
@@ -42,17 +42,17 @@ class ProductosForm(forms.ModelForm):
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content', 'image']
+        fields = ['titulo', 'contenido', 'imagen']
         widgets = {
-            'title': forms.TextInput(attrs={
+            'titulo': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Ingrese el título del Post'
             }),
-            'content': forms.Textarea(attrs={
+            'contenido': forms.Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': 'Ingrese el contenido del Post'
             }),
-            'image': forms.FileInput(attrs={
+            'imagen': forms.FileInput(attrs={
                 'class': 'form-control',
             }),
         }

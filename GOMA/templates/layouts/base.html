@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Esta sintaxis cambiara para cada titulo de las demás páginas -->
-    <title>{% block title %} GOMA Comercializadora {% endblock %}</title>
+    <title>{% block title %} GOMA Refacciones y Lubricantes {% endblock %}</title>
     <!-- Agreguen más hojas de estilo a esta ruta de ser necesario -->
     <link rel="stylesheet" href="../../static/Css/main.css?v1">
     <link rel="stylesheet" href="../static/Css/form.css">
@@ -14,30 +14,36 @@
 <body>
 
     <!-- Este es el menu, aqui van a ir los enlaces a las páginas adicionales, pueden modificar -->
-    <nav>
-        <ul>
-            <li><a href="{% url 'home' %}">Inicio</a></li>
-            <li><a href="{% url 'productos' %}">Productos</a></li>
-            <li><a href="{% url 'sobre_nosotros' %}">Sobre Nosotros</a></li>
-            <li><a href="{% url 'marcas' %}">Marcas</a></li>
-            <li><a href="{% url 'proveedores' %}">Proveedores</a></li>
-            <li><a href="{% url 'blog' %}">Blog</a></li>
-            <!-- Estas vistas SOLAMENTE se mostraran si hay un SUPER usuario autenticado en la base de datos -->
-            {% if request.user.is_authenticated and request.user.is_superuser %}
-                <li><a href="{% url 'nuevo_producto' %}">Agregar un Nuevo Producto</a></li>
-                <li><a href="{% url 'nuevo_blog' %}">Crear Post</a></li>
-                <li><a href="{% url 'registrar_super_usuario' %}">Agregar SuperUsuario</a></li>
-                <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
-            <!-- Estas vistas SOLAMENTE se mostraran si hay un usuario autenticado en la base de datos -->
-            {% elif request.user.is_authenticated  %}
-                <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
-            <!-- En caso de no haber un usuario mostrara esta y el resto de vistas -->
-            {% else %}
-                <li><a href="{% url 'registrar' %}">Registro</a></li>
-                <li><a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a></li>
-            {% endif %}
-        </ul>
-    </nav>
+    <header>
+        <!-- Agreguen el logo de la empresa aqui -->
+        <!-- <div>
+            <img src="" alt="Logo de la Empresa">
+        </div> -->
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'productos' %}">Productos</a></li>
+                <li><a href="{% url 'sobre_nosotros' %}">Sobre Nosotros</a></li>
+                <li><a href="{% url 'marcas' %}">Marcas</a></li>
+                <li><a href="{% url 'proveedores' %}">Proveedores</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <!-- Estas vistas SOLAMENTE se mostraran si hay un SUPER usuario autenticado en la base de datos -->
+                {% if request.user.is_authenticated and request.user.is_superuser %}
+                    <li><a href="{% url 'nuevo_producto' %}">Agregar un Nuevo Producto</a></li>
+                    <li><a href="{% url 'nuevo_blog' %}">Crear un Nuevo Post</a></li>
+                    <li><a href="{% url 'registrar_super_usuario' %}">Agregar SuperUsuario</a></li>
+                    <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
+                <!-- Estas vistas SOLAMENTE se mostraran si hay un usuario autenticado en la base de datos -->
+                {% elif request.user.is_authenticated  %}
+                    <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
+                <!-- En caso de no haber un usuario mostrara esta y el resto de vistas -->
+                {% else %}
+                    <li><a href="{% url 'registrar' %}">Registrarse</a></li>
+                    <li><a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
     
     <!-- Dentro de Este apartado "iran" los contenidos de las páginas -->
     {% block content %}

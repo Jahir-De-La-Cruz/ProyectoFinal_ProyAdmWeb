@@ -18,9 +18,9 @@
     <!-- Mostrar la lista de los Posts, (Itera casa POST en la lista de POSTS y va creando un div para cada uno) -->
     {% for post in posts %}
         <div>
-            <h2>{{ post.title }}</h2>
-            <img src="{{ post.image.url }}" alt="{{ post.image }}" width="300">
-            <p>{{ post.content }}</p>
+            <h2>{{ post.titulo }}</h2>
+            <img src="{{ post.imagen.url }}" alt="{{ post.imagen }}" width="300">
+            <p>{{ post.contenido }}</p>
             <p><b>Fecha de Publicación: </b>{{ post.created_at|date:"j F, Y" }}</p>
             <a href="#">Ver el Producto</a>
         </div>

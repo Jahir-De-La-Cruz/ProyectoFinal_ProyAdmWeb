@@ -8,7 +8,7 @@ class AdminRequiredMixin(AccessMixin):
         if not request.user.is_authenticated:
             return self.handle_no_permission()
         elif not request.user.is_superuser:
-            messages.error(request, 'Necesitas ser Administrador para entrar!')
+            messages.error(request, 'Necesitas ser un Administrador para entrar!')
             return redirect_to_login(request.get_full_path(), self.get_login_url(), self.get_redirect_field_name())
         return super().dispatch(request, *args, **kwargs)
 

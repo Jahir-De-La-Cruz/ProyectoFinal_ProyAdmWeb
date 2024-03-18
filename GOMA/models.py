@@ -14,7 +14,7 @@ class Categoria(models.Model):
     descripcion = models.TextField()
     
     def __str__(self):
-        return "Categoria: " + self.nombre + ", Descripción: " + self.descripcion
+        return self.nombre
 
 class Proveedor(models.Model):
     nombre = models.CharField(max_length=200)
@@ -58,12 +58,12 @@ class CompraProducto(models.Model):
     
 
 class Post(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to="posts", null=True, blank=True)
+    titulo = models.CharField(max_length=200)
+    contenido = models.TextField()
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    fecha_actualizacion = models.DateTimeField(auto_now=True)
+    imagen = models.ImageField(upload_to="posts", null=True, blank=True)
 
     def __str__(self):
-        return self.title + " - Creado el: " + str(self.created_at.date())
+        return self.titulo + " - Creado el: " + str(self.fecha_creacion.date())
