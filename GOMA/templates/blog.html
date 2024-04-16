@@ -21,7 +21,8 @@
             <h2>{{ post.titulo }}</h2>
             <img src="{{ post.imagen.url }}" alt="{{ post.imagen }}" width="300">
             <p>{{ post.contenido }}</p>
-            <p><b>Fecha de Publicación: </b>{{ post.created_at|date:"j F, Y" }}</p>
+            <p><b>Fecha de Publicación: </b>{{ post.fecha_creacion|date:"j F, Y" }}</p>
+            <p><b>Publicado por: </b>{{ post.autor }}</p>
             <a href="#">Ver el Producto</a>
         </div>
     {% endfor %}
