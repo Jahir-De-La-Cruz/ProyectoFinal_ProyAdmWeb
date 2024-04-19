@@ -1,5 +1,5 @@
 from django import forms
-from .models import Producto, Post
+from .models import Producto, Post, Marca, Categoria
 
 class ProductosForm(forms.ModelForm):
     class Meta:
@@ -21,7 +21,7 @@ class ProductosForm(forms.ModelForm):
             'disponibilidad': forms.CheckboxInput(attrs={
                 'class': 'form-control',
             }),
-            'marca': forms.TextInput(attrs={
+            'marca': forms.Select(attrs={
                 'class': 'form-control',
                 'placeholder': 'Ingrese la Marca del Producto'
             }),
@@ -57,7 +57,33 @@ class CreatePostForm(forms.ModelForm):
             }),
         }
         error_messages = {
-            'image': {
+            'imagen': {
                 'required': 'Por favor, cargue una imagen para el post.',
             },
+        }
+        
+class MarcaForm(forms.ModelForm):
+    class Meta:
+        model = Marca
+        fields = ['nombre']
+        widgets = {
+            'nombre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Ingrese nombre de la Marca'
+            }),
+        }
+                
+class CategoriaForm(forms.ModelForm):
+    class Meta:
+        model = Categoria
+        fields = ['nombre', 'descripcion']
+        widgets = {
+            'nombre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Ingrese la nueva Categoria'
+            }),
+            'descripcion': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Ingrese una breve descripción'
+            }), 
         }

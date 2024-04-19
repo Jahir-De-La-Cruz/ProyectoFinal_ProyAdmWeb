@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .models import Post, Producto
-from .forms import ProductosForm, CreatePostForm
+from .forms import ProductosForm, CreatePostForm, CategoriaForm, MarcaForm
 from django.contrib import messages
 from .mixins import AdminRequiredMixin, UserRequiredMixin
 
@@ -36,19 +36,25 @@ class ProveedoresView(View):
 class NuevoProductoView(LoginRequiredMixin, AdminRequiredMixin, View):
     def get(self, request):
         return render(request, 'nuevo_producto.html', {
-            'form': ProductosForm()
+            'form': ProductosForm
         })
 
     def post(self, request):
-        form = ProductosForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('productos')
-        else:
+        try:
+            form = ProductosForm(request.POST, request.FILES)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.save()
+                return redirect('productos')
+            else:
+                return render(request, 'nuevo_producto.html', {
+                    'form': form, 
+                    'error': 'Por favor completa correctamente el formulario.'
+                })
+        except ValueError:
             return render(request, 'nuevo_producto.html', {
-                'form': form, 
-                'error': 'Por favor completa correctamente el formulario.'
+                'form' : ProductosForm,
+                'error' : "Porfavor agregue datos válidos."
             })
 
 
@@ -177,7 +183,7 @@ class CrearNuevoBlogView(LoginRequiredMixin, AdminRequiredMixin, View):
         form = CreatePostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
+            post.autor = request.user
             post.save()
             return redirect('blog')
         else:
@@ -185,3 +191,39 @@ class CrearNuevoBlogView(LoginRequiredMixin, AdminRequiredMixin, View):
                 'form': form, 
                 'error': 'Por favor, complete correctamente el formulario.'
             })
+
+class AgregarProveedoresView(LoginRequiredMixin, AdminRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'agregar_proveedores.html', {
+            'MarcaForm': MarcaForm(),
+            'CategoriaForm' : CategoriaForm()
+        })
+    
+    def post(self, request):
+        if 'marca_form' in request.POST:
+            formMarca = MarcaForm(request.POST)
+            if formMarca.is_valid():
+                formMarca.save()
+                return redirect('marcas')
+            else:
+                return render(request, 'agregar_proveedores.html', {
+                    'MarcaForm': formMarca,
+                    'CategoriaForm': CategoriaForm(),
+                    'errorMarca': 'Por favor, complete correctamente el formulario de marca.'
+                })
+        elif 'categoria_form' in request.POST:
+            formCategoria = CategoriaForm(request.POST)
+            if formCategoria.is_valid():
+                formCategoria.save()
+                return redirect('proveedores')
+            else:
+                return render(request, 'agregar_proveedores.html', {
+                    'MarcaForm': MarcaForm(),
+                    'CategoriaForm': formCategoria,
+                    'errorCategoria': 'Por favor, complete correctamente el formulario de categoría.'
+                })
+        return render(request, 'agregar_proveedores.html', {
+            'MarcaForm': MarcaForm(),
+            'CategoriaForm': CategoriaForm(),
+            'error': 'No se pudo identificar el formulario enviado.'
+        })

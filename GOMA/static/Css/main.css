@@ -4,7 +4,7 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-} */
+}
 
 .card {
   display: flex;
@@ -72,4 +72,4 @@
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
   margin-right: 5px;
 
-}
+} */

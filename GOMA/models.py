@@ -7,7 +7,7 @@ class Marca(models.Model):
     nombre = models.CharField(max_length=200)
     
     def __str__(self):
-        return "Marca: " + self.nombre
+        return self.nombre
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=200)
