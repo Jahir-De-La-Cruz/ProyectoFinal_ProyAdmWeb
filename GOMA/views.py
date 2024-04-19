@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -227,3 +228,15 @@ class AgregarProveedoresView(LoginRequiredMixin, AdminRequiredMixin, View):
             'CategoriaForm': CategoriaForm(),
             'error': 'No se pudo identificar el formulario enviado.'
         })
+
+class ObtenerDetalles(View):
+    def get(self, request, producto_id):
+        producto = get_object_or_404(Producto, id=producto_id)
+        detalles = {
+            'imagen_url': producto.imagen.url,
+            'nombre': producto.nombre,
+            'descripcion': producto.descripcion,
+            'precio': producto.precio,
+            'marca': producto.marca.nombre,
+        }
+        return JsonResponse(detalles)

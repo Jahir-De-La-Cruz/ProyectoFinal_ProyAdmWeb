@@ -27,6 +27,7 @@ class Proveedor(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=200)
+    descripcion = models.TextField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     cantidad = models.IntegerField()
     disponibilidad = models.BooleanField(default=True)

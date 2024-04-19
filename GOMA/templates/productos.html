@@ -1,5 +1,5 @@
-<!-- Esta es la página del blog aqui se agregaran novedades que haya como por ejemplo promociones, no modificar la 
-    sintaxis de jinja ya establecida aqui, dentro de la carpeta templates iran los archivos HTML, los archivos CSS, JS
+<!-- Esta es la página del blog aquí se agregarán novedades como promociones, no modificar la
+    sintaxis de Jinja ya establecida aquí, dentro de la carpeta templates irán los archivos HTML, los archivos CSS, JS
     e IMG irán en la carpeta static -->
 
 <!-- Esto hace mención a que va a heredar el contenido de la página "base.html" -->
@@ -12,14 +12,73 @@
     <h1>Nuestros Productos</h1>
 
     {% for producto in productos %}
-        <div>
+        <div class="producto">
             <h1>{{ producto.nombre }}</h1>
             <img src="{{ producto.imagen.url }}" alt="{{ producto.imagen }}" width="300">
+            <p><b>Descripción: </b>{{ producto.descripcion }}</p>
             <p><b>Precio: </b>{{ producto.precio }}</p>
             <p><b>Marca: </b>{{ producto.marca.nombre }}</p>
-            <button>Comprar</button>
-            <button>Añadir al Carrito</button>
+            <button class="ver-detalle-btn" data-producto-id="{{ producto.id }}">Ver Detalle</button>
         </div>
     {% endfor %}
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+    
+    <script>
+        function mostrarModal(id) {
+            var modal = document.getElementById("modal");
+            var modalContent = document.getElementById("modal-content");
+            modal.style.display = "block";
+            modalContent.innerHTML = "<p>Cargando...</p>";
+            // Obtener el ID del producto del atributo 'data' del botón
+            var productoId = id.dataset.productoId;
+            // Realizar la petición AJAX para obtener la información del producto
+            $.ajax({
+                url: "/obtener_detalles/" + productoId + "/",
+                type: 'GET',
+                success: function(response) {
+                    modalContent.innerHTML = "<div class='modal-data'>" +
+                                                "<div>" +
+                                                    "<img class='imagen__modal' src='" + response.imagen_url + "' alt='" + response.nombre + "' width='300'>" +
+                                                "</div>" +
+                                                "<div class='modal-text'>" +
+                                                    "<h1 class='titulo__modal'>" + response.nombre + "</h1>" +
+                                                    "<p class='parrafo__modal'><b>Descripción del Producto: </b>" + response.descripcion + "</p>" +
+                                                    "<p class='parrafo__modal'><b>Precio: </b>" + response.precio + "</p>" +
+                                                    "<p class='parrafo__modal'><b>Marca: </b>" + response.marca + "</p>" +
+                                                    "<div class='botones__container'>" +
+                                                        "<button type='submit' class='boton__modal' name='btn__comprar'>Comprar</button>" + 
+                                                        "<button type='submit' class='boton__modal' name='btn__carrito'>Añadir al Carrito</button>" +
+                                                    "</div>" +
+                                                "</div>" +
+                                            "</div>";
+                },
+                error: function(xhr, status, error) {
+                    modalContent.innerHTML = "<p>Error al cargar los detalles del producto.</p>";
+                }
+            });
+        }
+        var verDetalleBtns = document.querySelectorAll('.ver-detalle-btn');
+        verDetalleBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                mostrarModal(this);
+            });
+        });
+        function cerrarModal() {
+            var modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            var modal = document.getElementById("modal");
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
+    </script>    
 
 {% endblock %}

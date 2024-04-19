@@ -4,11 +4,15 @@ from .models import Producto, Post, Marca, Categoria
 class ProductosForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ['nombre', 'precio', 'cantidad', 'disponibilidad', 'marca', 'categoria', 'imagen']
+        fields = ['nombre', 'descripcion', 'precio', 'cantidad', 'disponibilidad', 'marca', 'categoria', 'imagen']
         widgets = {
             'nombre': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Ingrese el Nombre del Producto'
+            }),
+            'descripcion': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Ingrese una breve descripción'
             }),
             'precio': forms.TextInput(attrs={
                 'class': 'form-control',

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from GOMA.views import IndexView, ProductosView, SobreNosotrosView, MarcasView, ProveedoresView, NuevoProductoView, AgregarProveedoresView, LoginView, SuperusuarioRegistroView, RegistroView, CerrarSesionView, BlogView, CrearNuevoBlogView
+from GOMA.views import IndexView, ProductosView, SobreNosotrosView, MarcasView, ProveedoresView, NuevoProductoView, AgregarProveedoresView, LoginView, SuperusuarioRegistroView, RegistroView, CerrarSesionView, BlogView, CrearNuevoBlogView, ObtenerDetalles
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -35,6 +35,7 @@ urlpatterns = [
     path('cerrar_sesion/', CerrarSesionView.as_view(), name="cerrar_sesion"),
     path('blog/', BlogView.as_view(), name="blog"),
     path('crear_nuevo_blog/', CrearNuevoBlogView.as_view(), name="nuevo_blog"),
+    path('obtener_detalles/<int:producto_id>/', ObtenerDetalles.as_view(), name='obtener_detalles')
 ]
 
 if settings.DEBUG:
