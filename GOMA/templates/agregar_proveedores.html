@@ -9,23 +9,34 @@
 
 {% block content %}
 
-    <h1>Agregar Nuevos Proveedores</h1>
-    {{ error }}
+    <div class="contenedor" style="margin-top: 100px;">
+        <div>
+            <h1>Agregar Nuevos Proveedores</h1>
+            {{ error }}
+        </div>
+        <div>
+            <div>
+                <h2>Nueva Marca</h2>
+                {{ errorMarca }}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ MarcaForm }}
+                    <button type="submit" name="marca_form">Agregar Marca</button>
+                </form>
+            </div>
+            <div>
+                <h2>Nueva Categoria</h2>
+                {{ errorCategoria }}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ CategoriaForm }}
+                    <button type="submit" name="categoria_form">Agregar Categoria</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    <h2>Nueva Marca</h2>
-    {{ errorMarca }}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ MarcaForm }}
-        <button type="submit" name="marca_form">Agregar Marca</button>
-    </form>
 
-    <h2>Nueva Categoria</h2>
-    {{ errorCategoria }}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ CategoriaForm }}
-        <button type="submit" name="categoria_form">Agregar Categoria</button>
-    </form>
+
 
 {% endblock %}

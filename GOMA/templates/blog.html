@@ -13,24 +13,45 @@
 {% block content %}
 
     <!-- Agregar la información, (MEJOREN LA ESTRUCTURA) -->
-    <h1>Blog</h1>
 
-    <!-- Mostrar la lista de los Posts, (Itera casa POST en la lista de POSTS y va creando un div para cada uno) -->
-    {% for post in posts %}
-        <div>
-            <h2>{{ post.titulo }}</h2>
-            <img src="{{ post.imagen.url }}" alt="{{ post.imagen }}" width="300">
-            <p>{{ post.contenido }}</p>
-            <p><b>Fecha de Publicación: </b>{{ post.fecha_creacion|date:"j F, Y" }}</p>
-            <p><b>Publicado por: </b>{{ post.autor }}</p>
-            <a href="#">Ver el Producto</a>
+    <!-- De este modo los posts se van a agregar dinamicamente a través del bucle for -->
+    
+    <div class="container">
+        <div style="width: 50%; margin-right: 20px;">
+            {% for post in posts %}
+            <div class="blog-post, first child" style="width: 100%; border: 2px solid grey; margin: 3px; border-radius: 30px; padding: 10px; font-family: Verdana, Geneva, Tahoma, sans-serif; margin-right: 700px; flex: auto;">
+                <h2>{{ post.titulo }}</h2>
+                <img src="{{ post.imagen.url }}" alt="{{ post.imagen }}" width="300">
+                <p>{{ post.contenido }}</p>
+                <p><b>Fecha de Publicación: </b>{{ post.fecha_creacion|date:"j F, Y" }}</p>
+                <p><b>Publicado por: </b>{{ post.autor }}</p>
+                <a href="#">Más informacion</a>
+            </div>
+        {% endfor %}
+            <div>
+                <!-- Aqui denle diseño de boton -->
+                {% if request.user.is_authenticated %}
+                    <br>
+                    <a href="{% url 'nuevo_blog' %}">Agregar un Nuevo Articulo</a>
+                {% endif %}
+            </div>
         </div>
-    {% endfor %}
+        <div style="width: 100%;">
+            <div>
+                <h2 style="text-align: center;">Deja tu opinión aquí:</h2>
+                <div id="disqus_thread" style="margin: 20px;"></div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Aqui denle diseño de boton -->
-    {% if request.user.is_authenticated %}
-        <br>
-        <a href="{% url 'nuevo_blog' %}">Agregar un Nuevo Articulo</a>
-    {% endif %}
+    <script>
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://comercializadoragoma.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 {% endblock %}

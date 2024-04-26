@@ -10,8 +10,8 @@
     <link rel="shortcut icon" href="../../static/Img/Logo_empresa.png" type="image/x-icon">
     
     <!-- Agreguen más hojas de estilo a esta ruta dentro de la carpeta static en caso de ser necesario -->
-    <link rel="stylesheet" href="../../static/Css/base.css?v1234567891234">
-    <link rel="stylesheet" href="../../static/Css/blog.css?v1">
+    <link rel="stylesheet" href="../../static/Css/base.css?v12345678912">
+    <link rel="stylesheet" href="../../static/Css/blog.css">
     <link rel="stylesheet" href="../../static/Css/main.css?v123456">
     <link rel="stylesheet" href="../../static/Css/form.css">
     <link rel="stylesheet" href="../../static/Css/modal.css?1">
@@ -29,7 +29,6 @@
             <a href="{% url 'home' %}">
                 <img src="../../static/Img/Logo_empresa.png" alt="Logo de la Empresa" class="logo" width="150px">
             </a>
-            <!-- <h1 class="logo">GOMA<br><p>Refacciones y Lubricantes</p></h1> -->
         </div>
         <nav>
             <ul>
@@ -54,6 +53,7 @@
                     <li><a href="{% url 'registrar' %}">Registrarse</a></li>
                     <li><a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a></li>
                 {% endif %}
+                <button><i class="fa-solid fa-bag-shopping"></i></button>
             </ul>
         </nav>
     </header>
@@ -105,7 +105,6 @@
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script id="dsq-count-scr" src="//comercializadoragoma.disqus.com/count.js" async></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>

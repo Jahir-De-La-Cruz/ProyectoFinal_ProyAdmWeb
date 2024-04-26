@@ -1,16 +1,10 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-}
+/* Sección del card */
 
 .card {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: rgb(237, 88, 54);
+  background-color: rgb(248, 246, 246);
   border-radius: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   padding: 15px;
@@ -52,16 +46,30 @@
   color: #ff0000;
   margin-right: 5px;
 }
-.contenedor-sobre-nuevo{
+
+/* Seccion sobre nosotros */
+
+.contenedor-sobre-nosotros {
   display: flex;
   justify-content: space-evenly;
 }
 
-.imagen-oaxaca{
+.imagenen {
   width: 48%;
+  order: 2; 
 }
-.contenido-textos h3 span{
-  background: #2b1ea0;
+
+.sobre-nosotros .contenido-textos {
+  width: 48%;
+  order: 1; 
+}
+
+.contenido-textos h3 {
+  margin-bottom: 15px;
+}
+
+.contenido-textos h3 span {
+  background: #d62e2e;
   color: #fff;
   border-radius: 50%;
   display: inline-block;
@@ -71,5 +79,54 @@
   padding: 2px;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
   margin-right: 5px;
+}
 
-} */
+.contenido-textos p {
+  padding: 0px 0px 30px 15px;
+  font-weight: 300;
+  text-align: justify;
+}
+
+/* Sección segunda card */
+
+.card2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgb(248, 246, 246);
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.card-image2 {
+  width: 2000px;
+  height: 250px;
+  margin-right: 35px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-image2 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-text2 {
+  flex-grow: 1;
+}
+
+.card-text2 h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text2 p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+

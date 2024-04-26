@@ -113,6 +113,7 @@ class SuperusuarioRegistroView(LoginRequiredMixin, AdminRequiredMixin, View):
                     user = User.objects.create_user(username=username, email=email, password=password1)
                     user.is_superuser = True
                     user.save()
+                    # return redirect('index_admin')
                     return render(request, 'superusuario_registro.html', {
                         'formRegister': UserCreationForm,
                         'mensaje' : f'Superusuario {username} registrado correctamente.'

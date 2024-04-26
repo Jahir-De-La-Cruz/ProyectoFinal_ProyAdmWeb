@@ -1,0 +1,34 @@
+.contenedor__proveedores {
+    padding-top: 60px;
+}
+
+.company-info {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.providers {
+    margin-top: 40px;
+}
+
+.provider-item {
+    display: inline-block;
+    margin: 10px;
+}
+
+.provider-item img {
+    max-width: 100px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.titulo_provedores{
+    color: darkred;
+}
+
+
+
+
+
+

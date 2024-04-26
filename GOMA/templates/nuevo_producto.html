@@ -9,12 +9,47 @@
 
 {% block content %}
 
-    <h1>Agregar Producto Nuevo</h1>
-
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form }}
-        <button>Guardar</button>
-    </form>
+    <div class="contenedor__formularios" style="margin-top: 100px;">
+        <div>
+            <h1>Agregar Producto Nuevo</h1>
+        </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label>Nombre:</label>
+                <!-- Los inputs tienen la clase form-control -->
+                {{ form.nombre }}
+            </div>
+            <div>
+                <label>Descripción:</label>
+                {{ form.descripcion }}
+            </div>
+            <div>
+                <label>Precio:</label>
+                {{ form.precio }}
+            </div>
+            <div>
+                <label>Cantidad:</label>
+                {{ form.cantidad }}
+            </div>
+            <div>
+                <label>Disponibilidad</label>
+                {{ form.disponibilidad }}
+            </div>
+            <div>
+                <label>Marca:</label>
+                {{ form.marca }}
+            </div>
+            <div>
+                <label>Categoria:</label>
+                {{ form.categoria }}
+            </div>
+            <div>
+                <label>Imagen:</label>
+                {{ form.imagen }}
+            </div>
+            <button>Guardar</button>
+        </form>
+    </div>
 
 {% endblock %}

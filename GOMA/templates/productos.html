@@ -3,24 +3,28 @@
     e IMG irán en la carpeta static -->
 
 <!-- Esto hace mención a que va a heredar el contenido de la página "base.html" -->
-{% extends 'layouts/base.html' %}
+{% extends 'layouts/basecarrito.html' %}
 
 {% block title %} Nuestros Productos {% endblock %}
 
 {% block content %}
 
-    <h1>Nuestros Productos</h1>
 
-    {% for producto in productos %}
-        <div class="producto">
-            <h1>{{ producto.nombre }}</h1>
-            <img src="{{ producto.imagen.url }}" alt="{{ producto.imagen }}" width="300">
-            <p><b>Descripción: </b>{{ producto.descripcion }}</p>
-            <p><b>Precio: </b>{{ producto.precio }}</p>
-            <p><b>Marca: </b>{{ producto.marca.nombre }}</p>
-            <button class="ver-detalle-btn" data-producto-id="{{ producto.id }}">Ver Detalle</button>
+<div class="contenedor" style="margin-top: 100px;">
+        <div>
+            <h1>Nuestros Productos</h1>
         </div>
-    {% endfor %}
+        {% for producto in productos %}
+            <div class="producto">
+                <h1>{{ producto.nombre }}</h1>
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.imagen }}" width="300">
+                <p><b>Descripción: </b>{{ producto.descripcion }}</p>
+                <p><b>Precio: </b>{{ producto.precio }}</p>
+                <p><b>Marca: </b>{{ producto.marca.nombre }}</p>
+                <button class="ver-detalle-btn" data-producto-id="{{ producto.id }}">Ver Detalle</button>
+            </div>
+        {% endfor %}
+    </div>
     
     <div id="modal" class="modal">
         <div class="modal-content">
@@ -35,9 +39,9 @@
             var modalContent = document.getElementById("modal-content");
             modal.style.display = "block";
             modalContent.innerHTML = "<p>Cargando...</p>";
-            // Obtener el ID del producto del atributo 'data' del botón
+            // Obtiene el ID del producto del atributo 'data' del botón
             var productoId = id.dataset.productoId;
-            // Realizar la petición AJAX para obtener la información del producto
+            // Realiza la petición AJAX para obtener la información del producto
             $.ajax({
                 url: "/obtener_detalles/" + productoId + "/",
                 type: 'GET',
@@ -79,6 +83,6 @@
                 cerrarModal();
             }
         }
-    </script>    
+    </script>
 
 {% endblock %}
