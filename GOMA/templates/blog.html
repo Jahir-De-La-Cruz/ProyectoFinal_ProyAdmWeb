@@ -13,33 +13,35 @@
 {% block content %}
 
     <!-- Agregar la información, (MEJOREN LA ESTRUCTURA) -->
-
+    
     <!-- De este modo los posts se van a agregar dinamicamente a través del bucle for -->
     
-    <div class="container">
-        <div style="width: 50%; margin-right: 20px;">
+    <div class="container__post" style="margin-bottom: 40px;">
+        <div class="container__posts">
             {% for post in posts %}
-            <div class="blog-post, first child" style="width: 100%; border: 2px solid grey; margin: 3px; border-radius: 30px; padding: 10px; font-family: Verdana, Geneva, Tahoma, sans-serif; margin-right: 700px; flex: auto;">
-                <h2>{{ post.titulo }}</h2>
-                <img src="{{ post.imagen.url }}" alt="{{ post.imagen }}" width="300">
-                <p>{{ post.contenido }}</p>
-                <p><b>Fecha de Publicación: </b>{{ post.fecha_creacion|date:"j F, Y" }}</p>
-                <p><b>Publicado por: </b>{{ post.autor }}</p>
-                <a href="#">Más informacion</a>
-            </div>
-        {% endfor %}
-            <div>
+                <div class="blog-post, first child" style="width: 80%; border: 6px solid rgb(184, 16, 16); margin: 3px; border-radius: 30px; padding: 20px 30px; font-family: Verdana, Geneva, Tahoma, sans-serif; margin-right: 20px; flex: auto; margin-left: 100px; margin-bottom: 10px; justify-items: center; align-items: center; background-color: white;">
+                    <h2>{{ post.titulo }}</h2>
+                    <img src="{{ post.imagen.url }}" alt="{{ post.imagen }}" width="300">
+                    <p>{{ post.contenido }}</p>
+                    <p><b>Fecha de Publicación: </b>{{ post.fecha_creacion|date:"j F, Y" }}</p>
+                    <p><b>Publicado por: </b>{{ post.autor }}</p>
+                    <a href="{% url 'productos' %}" style="display: inline-block; background-color: rgb(184, 16, 16); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px;">Más informacion</a>
+                </div>
+            {% endfor %}
+            <div class="seccion__boton" style="margin-left: 130px;">
                 <!-- Aqui denle diseño de boton -->
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated and request.user.is_superuser %}
                     <br>
-                    <a href="{% url 'nuevo_blog' %}">Agregar un Nuevo Articulo</a>
+                    <a href="{% url 'nuevo_blog' %}" style="display: inline-block; background-color: rgb(184, 16, 16); 
+                    color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; 
+                    margin-top: 10px;">Agregar un Nuevo Post</a>
                 {% endif %}
             </div>
         </div>
-        <div style="width: 100%;">
+        <div class="container__comments" style="width: 50%; margin: 10px; margin-right: 100px; border: 6px solid rgb(184, 16, 16); border-radius: 30px; background-color: white; height: 1100px;">
             <div>
                 <h2 style="text-align: center;">Deja tu opinión aquí:</h2>
-                <div id="disqus_thread" style="margin: 20px;"></div>
+                <div id="disqus_thread" style="margin: 40px;"></div>
             </div>
         </div>
     </div>

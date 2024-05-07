@@ -1,0 +1,68 @@
+{% extends 'layouts/baseAdmin.html' %}
+
+{% block content %}
+
+    <div class="contenedor__inicio">
+        <div class="contenedor_titulo">
+            <h1>Bienvenido {{ request.user.username }} al Panel para Administradores</h1>
+        </div>
+        <div class="container">
+            <div class="table_header">
+                <h2>Compras</h2>
+            </div>
+            <table class="display" id="MiTabla">
+                <thead>
+                    <tr>
+                        <th>Cliente <i class="bi bi-chevron-expand"></i></th>
+                        <th>Email <i class="bi bi-chevron-expand"></i></th>
+                        <th>Telefono <i class="bi bi-chevron-expand"></i></th>
+                        <th>Precio Total <i class="bi bi-chevron-expand"></i></th>
+                        <th>Fecha de Compra <i class="bi bi-chevron-expand"></i></th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compra in compras %}
+                        <tr>
+                            <td>{{ compra.nombreCompleto }}</td>
+                            <td>{{ compra.email }}</td>
+                            <td>{{ compra.telefono }}</td>
+                            <td>{{ compra.precioFinal }}</td>
+                            <td>{{ producto.fechaCompra }}</td>
+                            <td>
+                                <button><i class="bi bi-pencil-square" id="icons"></i></button>
+                                <button><i class="bi bi-trash3" id="icons"></i></button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#MiTabla').DataTable({
+                "order": [[1, "asc"]],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(Filtrada de _MAX_ Registros)",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "No se encontraron registros coincidentes",
+                    "paginate": {
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                },
+            });
+        }); 
+    </script>
+
+{% endblock %}

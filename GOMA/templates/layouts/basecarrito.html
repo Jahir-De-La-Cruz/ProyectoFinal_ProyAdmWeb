@@ -10,11 +10,10 @@
     <link rel="shortcut icon" href="../../static/Img/Logo_empresa.png" type="image/x-icon">
     
     <!-- Agreguen más hojas de estilo a esta ruta dentro de la carpeta static en caso de ser necesario -->
-    <link rel="stylesheet" href="../../static/Css/base.css?v12345678912">
-    <link rel="stylesheet" href="../../static/Css/blog.css">
-    <link rel="stylesheet" href="../../static/Css/main.css?v123456">
-    <link rel="stylesheet" href="../../static/Css/form.css">
+    <link rel="stylesheet" href="../../static/Css/base.css?v1234567891234">
+    <link rel="stylesheet" href="../../static/Css/carrito.css?v12345">
     <link rel="stylesheet" href="../../static/Css/modal.css?1">
+    <link rel="stylesheet" href="../../static/Css/productos.css?v123456">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -35,25 +34,55 @@
                 <li><a href="{% url 'home' %}">Inicio</a></li>
                 <li><a href="{% url 'productos' %}">Productos</a></li>
                 <li><a href="{% url 'sobre_nosotros' %}">Sobre Nosotros</a></li>
-                <li><a href="{% url 'marcas' %}">Marcas</a></li>
                 <li><a href="{% url 'proveedores' %}">Proveedores</a></li>
                 <li><a href="{% url 'blog' %}">Blog</a></li>
-                <!-- Estas vistas SOLAMENTE se mostraran si hay un SUPER usuario autenticado en la base de datos -->
-                {% if request.user.is_authenticated and request.user.is_superuser %}
+                <!-- Estas vistas SOLAMENTE se mostraran si hay un SUPER usuario y staff autenticado en la base de datos -->
+                {% if request.user.is_authenticated and request.user.is_superuser and request.user.is_staff %}
+                    <li><a href="{% url 'nuevo_producto' %}">Nuevo Producto</a></li>
+                    <li><a href="{% url 'nuevo_proveedor' %}">Nuevos Proveedores</a></li>
+                    <li><a href="{% url 'nuevo_blog' %}">Nuevo Blog</a></li>
+                    <li><a href="{% url 'registrar_super_usuario' %}">Agregar SuperUsuario</a></li>
+                    <li><a href="{% url 'index_admin' %}">Admin</a></li>
+                    <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
+                <!-- Estas vistas SOLAMENTE se mostraran si hay un super usuario autenticado en la base de datos -->
+                {% elif request.user.is_authenticated and request.user.is_superuser  %}
                     <li><a href="{% url 'nuevo_producto' %}">Nuevo Producto</a></li>
                     <li><a href="{% url 'nuevo_proveedor' %}">Nuevos Proveedores</a></li>
                     <li><a href="{% url 'nuevo_blog' %}">Nuevo Blog</a></li>
                     <li><a href="{% url 'registrar_super_usuario' %}">Agregar SuperUsuario</a></li>
                     <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
-                <!-- Estas vistas SOLAMENTE se mostraran si hay un usuario autenticado en la base de datos -->
-                {% elif request.user.is_authenticated  %}
+                <!-- Esta vista se mostrara solamente si hay un usuario autenticado -->
+                {% elif request.user.is_authenticated %}
                     <li><a href="{% url 'cerrar_sesion' %}">Cerrar Sesión</a></li>
                 <!-- En caso de no haber un usuario mostrara esta y el resto de vistas -->
                 {% else %}
                     <li><a href="{% url 'registrar' %}">Registrarse</a></li>
                     <li><a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a></li>
                 {% endif %}
-                <button><i class="fa-solid fa-bag-shopping"></i></button>
+
+                <!-- Agregar carrito de compras -->
+                <button style="background: none; border: none; outline: none;"><i class="fa-solid fa-cart-shopping carrito"></i></button>
+                <div class="cart-items-container">
+                    <div class="cart-items">
+                        <h2>Carrito de Compras</h2>
+                        <table id="cart-items-table">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        </table>
+                        <p id="cart-total-price">Precio total: $0</p>
+                        <button id="cart-button-buy" class="buttons" type="button">Comprar</button>
+                        <button id="cart-button-clear" class="buttons" type="button">Vaciar Carrito</button>
+                    </div>
+                    <button class="cart-close-button" type="button"><i class="fa-solid fa-times"></i></button>
+                </div>
+
             </ul>
         </nav>
     </header>
@@ -96,6 +125,7 @@
     
     <!-- Agreguen más scripts a esta ruta de ser necesario -->
     <script src="../../static/Js/app.js"></script>
+    <script src="../../static/Js/carrito.js"></script>
     <script>
         window.addEventListener("scroll", function() {
             var header = document.querySelector("header");

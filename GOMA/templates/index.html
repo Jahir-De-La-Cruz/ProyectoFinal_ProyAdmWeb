@@ -19,80 +19,91 @@
                 {% else %}
                     <h1>Bienvenido a Comercializadora GOMA</h1>
                 {% endif %}
-                <p>Ofreciendo los mejores productos y servicios desde 1989.</p>
+                    <p>Ofreciendo los mejores productos y servicios desde 1989.</p>
             </div>
         </div>
     </div>
-    <!-- <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
-            style="height: 100%; width: 100%;">
-            <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-                style="stroke: none; fill: #390d0d;"></path>
-        </svg></div> -->
+
+    <div class="slider-frame">
+        <ul>
+            <li><img src="../static/Img/img1.jpg" alt=""></li>
+            <li><img src="../static/Img/Refaccionaria.png" alt=""></li>
+            <li><img src="../static/Img/img3.jpg" alt=""></li>
+        </ul>
+    </div>
+
     <div class="card">
         <div class="card-image">
-            <img src="../static/Img/Refaccionaria.png" alt="" />
+            <img src="../static/Img/GOMAlogo.jpg" alt="" />
         </div>
         <div class="card-text">
             <h2>GOMA</h2>
             <p>
-                <span>Que somos</span><br> Experiencia del Usuario Mejorada:
-                El diseño y desarrollo de la plataforma de e-commerce se
-                centrará en proporcionar una experiencia fluida y atractiva
-                para los usuarios. Con una interfaz intuitiva y fácil de usar,
-                los clientes podrán navegar por el sitio, buscar productos y
-                realizar compras de manera eficiente.
-
-                Mayor Eficiencia en la Gestión de Productos:
-                La implementación del formulario para la gestión de productos
-                permitirá al super usuario agregar fácilmente nuevos productos
-                al catálogo en línea. Con campos estructurados para información
-                clave como nombre, precio e imagen, el proceso de agregar
-                productos será más rápido y eficiente, lo que garantizará
-                una oferta de productos actualizada y variada para los clientes.
+                <span>¿Quiénes somos?</span><br> En GOMA nos dedicamos a proporcionar a nuestros clientes las mejores refacciones, partes y lubricantes para mantener sus vehículos en óptimas condiciones. Nos enorgullecemos de ofrecer productos de alta calidad y un servicio excepcional.
             </p>
         </div>
     </div>
 
-    <section class="contenedor sobre-nosotros">
-        <h2 class="titulo">¿Que hacer?</h2>
+    <section class="contenedor sobre-nosotros" style="margin-top: 60px;">
         <div class="contenedor-sobre-nosotros">
-            <img src="cafe-irlandes.png" alt="" class="imagenen">
+            <img src="../static/Img/GOMA_info.jpeg" alt="" class="imagenen">
             <div class="contenido-textos">
-                <h3><span>1</span>Elige la plataforma donde juegues</h3>
-                <p>Abajo en las cuatro secciones que presentamos puedes elegir la plataorma de tu agrado
-                    y comenzar a buscar la recomendacion que mas te agrade
-                </p>
-                <h3><span>2</span>Elige un Juego</h3>
-                <p>Cuando selecciones un juego vendra parte de su informacion, como lo calificamos y porque lo
-                    recomendamos
-                </p>
+                <h3><span>1</span> Variedad de Productos</h3>
+                <p>En GOMA, ofrecemos una amplia selección de refacciones, partes y lubricantes de las mejores marcas del mercado. Nuestro catálogo incluye todo lo que necesitas para mantener tu vehículo en perfecto estado.</p>
+                <h3><span>2</span> Servicio al Cliente</h3>
+                <p>Nuestro equipo está comprometido en brindar el mejor servicio al cliente. Estamos aquí para ayudarte a encontrar las partes que necesitas y responder a todas tus preguntas con conocimiento y profesionalismo.</p>
             </div>
         </div>
     </section>
-    <div class="card2">
-        <div class="card-image2">
-            <img src="cafe-irlandes.png" alt="" />
-        </div>
-        <div class="card-text2">
-            <h2>GOMA</h2>
-            <p>
-                <span>Que somos</span><br> Experiencia del Usuario Mejorada:
-                El diseño y desarrollo de la plataforma de e-commerce se
-                centrará en proporcionar una experiencia fluida y atractiva
-                para los usuarios. Con una interfaz intuitiva y fácil de usar,
-                los clientes podrán navegar por el sitio, buscar productos y
-                realizar compras de manera eficiente.
 
-                Mayor Eficiencia en la Gestión de Productos:
-                La implementación del formulario para la gestión de productos
-                permitirá al super usuario agregar fácilmente nuevos productos
-                al catálogo en línea. Con campos estructurados para información
-                clave como nombre, precio e imagen, el proceso de agregar
-                productos será más rápido y eficiente, lo que garantizará
-                una oferta de productos actualizada y variada para los clientes.
-            </p>
+    <section class="contenedor-carta">
+        <div class="contenedor-imagen">
+            <img src="../static/Img/goma_datos.jpeg" alt="">
         </div>
+        <div class="contenedor-texto">
+            <h2 class="titulo-carta">GOMA</h2>
+            <p class="titulolo">Tu socio confiable en refacciones y partes automotrices</p>
+            <p class="biografia">En GOMA, nos esforzamos por ser tu proveedor de confianza en el mundo de las refacciones y partes automotrices. Nuestro compromiso es ofrecerte productos de calidad y un servicio excepcional para satisfacer todas tus necesidades.</p>
+            <div class="icon">
+                <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-facebook-square"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-twitter-square"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <div class="seccion__contacto">
+        <div>
+            <h2>Formulario de Contacto</h2>
+            <p>Contacta directo a ese Email</p>
+        </div>
+        <form method="POST" action="{% url 'contact' %}" class="contenedor__formularios" id="contactoForm">
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <h3 class="mensaje__Success">{{ message }}</h3>
+            {% endfor %}
+            {% endif %}
+            <div class="grupo-formulario">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="grupo-formulario">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="grupo-formulario">
+                <label for="subject">Asunto:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="grupo-formulario">
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="grupo-formulario">
+                <button type="submit">Enviar Mensaje</button>
+            </div>
+        </form>
     </div>
-
 
 {% endblock %}

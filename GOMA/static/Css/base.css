@@ -1,14 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 body {
-    background-color: #adadad !important;
+    /* background-color: #adadad !important; */
+    background-image: linear-gradient(to bottom, rgba(143, 143, 143, 0.7), rgba(133, 133, 133, 0.7)), url('../Img/fondo.jpg');
+    /* background-position: center; */
+    background-size: cover;
 }
 
 header {
@@ -66,7 +70,7 @@ header ul li a {
     margin: 0 10px;
     text-decoration: none;
     color: #fff;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
     font-weight: 600;
     transition: 0.7s;
 }
@@ -125,6 +129,67 @@ header.abajo ul li a {
 
 .Inicio p {
     font-size: 22px;
+}
+
+/* Seccion Carrusel */
+
+.slider-frame {
+    width: 100%;
+    height: auto;
+    margin: 50px auto;
+    overflow: hidden;
+}
+  
+.slider-frame ul {
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: slide 20s infinite alternate ease-in-out;
+}
+  
+.slider-frame li {
+    width: 100%;
+    list-style: none;
+}
+  
+.slider-frame img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+}
+  
+@keyframes slide {
+    0% {
+      margin-left: 0;
+    }
+  
+    20% {
+      margin-left: 0;
+    }
+  
+    25% {
+      margin-left: -100%;
+    }
+  
+    45% {
+      margin-left: -100%;
+    }
+  
+    50% {
+      margin-left: -200%;
+    }
+  
+    70% {
+      margin-left: -200%;
+    }
+  
+    75% {
+      margin-left: -300%;
+    }
+  
+    100% {
+      margin-left: -300%;
+    }
 }
 
 /* Seccion del footer */

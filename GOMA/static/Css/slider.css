@@ -1,0 +1,125 @@
+.contenedor__proveedores {
+    margin: 40px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background-color: #fff;
+}
+
+.contenedor__proveedores h1 {
+    font-size: 38px;
+    font-weight: bold;
+    color: #000;
+}
+
+.contenedor__proveedores > p {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+div > h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 30px;
+}
+
+.slider {
+    width: 80vw;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slider .slide-track {
+    display: flex;
+    animation: scroll 40s linear infinite;
+    -webkit-animation: scroll 40s linear infinite;
+    width: calc(350px * 40); /* Se ajusta el ancho para que coincida con el ancho de la imagen */
+}
+
+.slider .slide {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slider .slide .slide__img {
+    width: 100%;
+    height: 300px;
+    /* object-fit: cover; */
+}
+
+.contenedor__afiliados {
+    margin: 40px 10px;
+    /* border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.2); */
+    padding: 20px;
+    background-color: #fff;
+}
+
+.providers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.provider-item {
+    width: 280px;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.provider-item img {
+    max-width: 300px;
+    width: 100%;
+    height: 300px;
+    border-radius: 40%;
+    margin-bottom: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.provider-item p {
+    margin-bottom: 5px;
+}
+
+.provider-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.provider-item ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.provider-item ul li:last-child {
+    margin-right: 0;
+}
+
+.provider-item ul li a {
+    color: #333;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.provider-item ul li a:hover {
+    color: #555;
+}
+
+
+@keyframes scroll {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    100% {
+        -webkit-transform: translateX(calc(-250px * 20)); /* Se ajusta el desplazamiento para que coincida con el ancho de la imagen */
+        transform: translateX(calc(-250px * 20));
+    }
+}

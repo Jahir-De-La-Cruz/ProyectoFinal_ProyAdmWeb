@@ -90,7 +90,7 @@
     font-family: 'Arial', sans-serif;
     font-size: 16px;
     color: #fff;
-    background-color: #ff4444;
+    background-color: #a70c11;
     border: none;
     padding: 10px 20px;
     margin-top: 10px;
@@ -100,7 +100,7 @@
 }
 
 .boton__modal:hover {
-    background-color: #cc0000;
+    background-color: #550000;
 }
 
 .botones__container button {

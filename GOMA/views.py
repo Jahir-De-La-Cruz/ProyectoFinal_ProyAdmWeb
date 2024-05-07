@@ -6,18 +6,43 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .models import Post, Producto
+from .models import Post, Producto, Marca, Categoria
 from .forms import ProductosForm, CreatePostForm, CategoriaForm, MarcaForm
 from django.contrib import messages
-from .mixins import AdminRequiredMixin, UserRequiredMixin
+from .mixins import AdminRequiredMixin, RequiredBuyMixin
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
 
 class IndexView(View):
     def get(self, request):
         return render(request, 'index.html')
+    
+class ContactView(View):
+    def post(self, request):
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
+        
+        template = render_to_string('email_template.html', {
+            'name' : name,
+            'email' : email,
+            'subject' : subject,
+            'message' : message
+        })
+        
+        email = EmailMessage(subject, template, settings.EMAIL_HOST_USER, ['soyjahirjesua04@gmail.com'])
+        
+        email.fail_silently = False
+        email.send()
+        
+        messages.success(request, 'Se ha enviado el correo exitosamente!')
+        return redirect('home')
 
 class ProductosView(View):
     def get(self, request):
-        productos = Producto.objects.filter(disponibilidad=True)
+        productos = Producto.objects.all()
         return render(request, 'productos.html', {
             'productos': productos
         })
@@ -25,10 +50,6 @@ class ProductosView(View):
 class SobreNosotrosView(View):
     def get(self, request):
         return render(request, 'sobre_nosotros.html')
-
-class MarcasView(View):
-    def get(self, request):
-        return render(request, 'marcas.html')
 
 class ProveedoresView(View):
     def get(self, request):
@@ -46,7 +67,10 @@ class NuevoProductoView(LoginRequiredMixin, AdminRequiredMixin, View):
             if form.is_valid():
                 post = form.save(commit=False)
                 post.save()
-                return redirect('productos')
+                if request.user.is_superuser and request.user.is_staff:
+                    return redirect('index_admin')
+                else:
+                    return redirect('productos')
             else:
                 return render(request, 'nuevo_producto.html', {
                     'form': form, 
@@ -113,7 +137,6 @@ class SuperusuarioRegistroView(LoginRequiredMixin, AdminRequiredMixin, View):
                     user = User.objects.create_user(username=username, email=email, password=password1)
                     user.is_superuser = True
                     user.save()
-                    # return redirect('index_admin')
                     return render(request, 'superusuario_registro.html', {
                         'formRegister': UserCreationForm,
                         'mensaje' : f'Superusuario {username} registrado correctamente.'
@@ -150,8 +173,12 @@ class LoginView(View):
             password = form_login.cleaned_data['password']
             Usuario = authenticate(request, username=username, password=password)
             if Usuario is not None:
-                login(request, Usuario)
-                return redirect('home')
+                if Usuario.is_superuser and Usuario.is_staff:
+                    login(request, Usuario)
+                    return redirect('index_admin')
+                else:
+                    login(request, Usuario)
+                    return redirect('home')
             else:
                 return render(request, 'inicio_sesion.html', {
                     'formLogin': form_login,
@@ -170,7 +197,7 @@ class CerrarSesionView(LoginRequiredMixin, View):
 
 class BlogView(View):
     def get(self, request):
-        posts = Post.objects.all()
+        posts = Post.objects.all().order_by('-id')
         return render(request, 'blog.html', {
             'posts': posts
         })
@@ -205,23 +232,39 @@ class AgregarProveedoresView(LoginRequiredMixin, AdminRequiredMixin, View):
         if 'marca_form' in request.POST:
             formMarca = MarcaForm(request.POST)
             if formMarca.is_valid():
+                formMarca = Marca.objects.create(nombre=request.POST['nombre'])
                 formMarca.save()
-                return redirect('marcas')
+                if request.user.is_superuser and request.user.is_staff:
+                    return redirect('marcasAdmin')
+                else:
+                    return render(request, 'agregar_proveedores.html', {
+                        'MarcaForm': MarcaForm(),
+                        'CategoriaForm' : CategoriaForm(),
+                        'mensajeMarca' : f'La marca {formMarca.nombre} se agrego correctamente.'
+                    })
             else:
                 return render(request, 'agregar_proveedores.html', {
-                    'MarcaForm': formMarca,
+                    'MarcaForm': MarcaForm(),
                     'CategoriaForm': CategoriaForm(),
                     'errorMarca': 'Por favor, complete correctamente el formulario de marca.'
                 })
         elif 'categoria_form' in request.POST:
             formCategoria = CategoriaForm(request.POST)
             if formCategoria.is_valid():
+                formCategoria = Categoria.objects.create(nombre=request.POST['nombre'], descripcion=request.POST['descripcion'])
                 formCategoria.save()
-                return redirect('proveedores')
+                if request.user.is_superuser and request.user.is_staff:
+                    return redirect('categorias')
+                else:
+                    return render(request, 'agregar_proveedores.html', {
+                        'MarcaForm': MarcaForm(),
+                        'CategoriaForm' : CategoriaForm(),
+                        'mensajeCategoria' : f'La categoria {formCategoria.nombre} se agrego correctamente.'
+                    }) 
             else:
                 return render(request, 'agregar_proveedores.html', {
                     'MarcaForm': MarcaForm(),
-                    'CategoriaForm': formCategoria,
+                    'CategoriaForm': CategoriaForm(),
                     'errorCategoria': 'Por favor, complete correctamente el formulario de categoría.'
                 })
         return render(request, 'agregar_proveedores.html', {
@@ -230,7 +273,7 @@ class AgregarProveedoresView(LoginRequiredMixin, AdminRequiredMixin, View):
             'error': 'No se pudo identificar el formulario enviado.'
         })
 
-class ObtenerDetalles(View):
+class ObtenerDetallesView(View):
     def get(self, request, producto_id):
         producto = get_object_or_404(Producto, id=producto_id)
         detalles = {
@@ -241,3 +284,7 @@ class ObtenerDetalles(View):
             'marca': producto.marca.nombre,
         }
         return JsonResponse(detalles)
+    
+class ConfirmacionCompraView(RequiredBuyMixin, View):
+    def get(self, request):
+        return render(request, 'confirmar_compra.html')

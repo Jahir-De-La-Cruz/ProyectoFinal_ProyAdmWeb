@@ -1,0 +1,16 @@
+<!-- Esta es la página de compra aqui ira un formulario el cual ya nos muestra los producros que hayan seleccionado, 
+    no modificar la sintaxis de jinja ya establecida aqui, dentro de la carpeta templates iran los archivos HTML, 
+    los archivos CSS, JS e IMG irán en la carpeta static -->
+
+<!-- Esto hace mención a que va a heredar el contenido de la página "base.html" -->
+{% extends 'layouts/base.html' %}
+
+{% block title %} Confirmación de Compra {% endblock %}
+
+{% block content %}
+
+    <div class="contenedor__formularios" style="margin-top: 100px;">
+        <h1>Muchas gracias por preferir a GOMA Comercializadora</h1>
+    </div>
+
+{% endblock %}

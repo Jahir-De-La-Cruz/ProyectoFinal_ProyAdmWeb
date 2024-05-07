@@ -9,24 +9,27 @@
 
 {% block content %}
 
-    <div class="contenedor" style="margin-top: 100px;">
+    <div class="contenedor__todo" style="margin-top: 100px; margin-bottom: 60px;">
         <div>
             <h1>Agregar Nuevos Proveedores</h1>
-            {{ error }}
+            <h3 class="mensaje__Error">{{ error }}</h3>
         </div>
-        <div>
-            <div>
+        <div class="contenedor" style="display: flex;">
+            <div class="contenedor__formularios">
                 <h2>Nueva Marca</h2>
+                <h3 class="mensaje__Success">{{ mensajeMarca }}</h3>
+                <h3 class="mensaje__Error">{{ errorMarca }}</h3>
                 {{ errorMarca }}
                 <form action="" method="POST">
                     {% csrf_token %}
                     {{ MarcaForm }}
                     <button type="submit" name="marca_form">Agregar Marca</button>
                 </form>
-            </div>
-            <div>
+            </div> 
+            <div class="contenedor__formularios">
                 <h2>Nueva Categoria</h2>
-                {{ errorCategoria }}
+                <h3 class="mensaje__Success">{{ mensajeCategoria }}</h3>
+                <h3 class="mensaje__Error">{{ errorCategoria }}</h3>
                 <form action="" method="POST">
                     {% csrf_token %}
                     {{ CategoriaForm }}
@@ -35,8 +38,5 @@
             </div>
         </div>
     </div>
-
-
-
 
 {% endblock %}

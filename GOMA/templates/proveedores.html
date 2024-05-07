@@ -1,4 +1,4 @@
-<!-- Esta es la página del blog aqui se agregaran novedades que haya como por ejemplo promociones, no modificar la 
+<!-- Esta es la página del blog aqui se agregaran novedades que haya como por ejemplo promociones, no modificar la
     sintaxis de jinja ya establecida aqui, dentro de la carpeta templates iran los archivos HTML, los archivos CSS, JS
     e IMG irán en la carpeta static -->
 
@@ -9,80 +9,252 @@
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proveedores</title>
-    <link rel="stylesheet" href="proveedores.css">
-
-</head>
-
-<body>
-
     <!-- Título -->
-
-    <div class="contenedor__proveedores" style="margin-top: 100px;">
+    <div class="contenedor__proveedores" style="margin-top: 120px;">
+        <h1>Conoce Algunos De Nuestros Proveedores</h1>
+        <p>Contamos con proveedores de alta calidad para darte el servicio que te mereces!</p>
         <div>
-            <h1 class="titulo_provedores">Proveedores</h1>
-            <img src="tu-imagen-aqui.jpg" alt="Imagen de la empresa" width="200">
+            <h2>Estas son las marcas que comercializamos</h2>
         </div>
-        <div class="company-info">
-            <h2>Información de la refaccionaria</h2>
-            <p>Somos una empresa dedicada a la comercializacion de refacciones de distintas compañias afiliadas oficiales.
-                Fundada en ---- en Nuevo León, en la Ciudad Juarez, nos ubicamos en ---- con ---- locales en distintos puntos;
-                reconocidos por nuestra integridad y valores, recalcando siempre la honestidad ante el cliente, siempre dejando un
-                buen producto para el mismo. 
-                Con años de experiencia en el mercado, nos hemos ganado la reputación de ofrecer a nuestros clientes una amplia gama de productos de las marcas más reconocidas y respetadas en la industria.
-                Ya sea que estés buscando partes de motor, sistemas de transmisión, componentes eléctricos, diferenciales, suspensiones o cualquier otra pieza crucial para tu vehículo, estamos aquí para satisfacer tus necesidades con productos de alta calidad y a precios competitivos.
-                Nuestra misión es superar las expectativas de nuestros clientes, ofreciendo un servicio de primera clase, productos de calidad y un compromiso inquebrantable con la satisfacción del cliente.
-                Gracias por confiar en GOMA Refacciones y lubricantes como tu proveedor de refacciones automotrices. Esperamos poder servirte y ayudarte a mantener tu vehículo en perfecto estado durante muchos años más.</p>
+        <div class="slider">
+            <div class="slide-track">
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/1.jpeg" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/2.jpg" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/3.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/4.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px; background-color: #fff;">
+                    <img class="slide__img" src="../static/Img/prov/5.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/6.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/7.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/8.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/9.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px; background-color: #fff;">
+                    <img class="slide__img" src="../static/Img/prov/10.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/11.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/12.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px; background-color: #fff;">
+                    <img class="slide__img" src="../static/Img/prov/13.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px; background-color: #fff;">
+                    <img class="slide__img" src="../static/Img/prov/14.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px; background-color: #fff;">
+                    <img class="slide__img" src="../static/Img/prov/15.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px; background-color: #fff;">
+                    <img class="slide__img" src="../static/Img/prov/16.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px; background-color: #fff;">
+                    <img class="slide__img" src="../static/Img/prov/17.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px; background-color: #fff;">
+                    <img class="slide__img" src="../static/Img/prov/18.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px; background-color: #fff;">
+                    <img class="slide__img" src="../static/Img/prov/19.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/20.png" alt="">
+                </div>
+                <div class="slide mi-slider">
+                    <img class="slide__img" src="../static/Img/prov/1.png" alt="">
+                </div>
+                <div class="slide mi-slider">
+                    <img class="slide__img" src="../static/Img/prov/2.png" alt="">
+                </div>
+                <div class="slide mi-slider">
+                    <img class="slide__img" src="../static/Img/prov/3.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/4.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/5.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/6.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/7.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/8.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/9.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/10.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/11.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/12.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/13.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/14.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/15.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/16.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/17.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/18.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/19.png" alt="">
+                </div>
+                <div class="slide" style="width: 500px; height: 300px; margin-left: 10px;">
+                    <img class="slide__img" src="../static/Img/prov/20.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="contenedor__afiliados">
+            <div>
+                <h2>Conoce a nuestros afiliados</h2>
+                <p>¿También quieres ser ailiado? Solicita informes en nuestro <a href="{% url 'home' %}"> formulario de contacto</a>!</p>
+            </div>
+            <div class="providers">
+                <div class="provider-item">
+                    <!-- <img src="../static/Img/prov/Jahir.png" alt="Proveedor 1"> -->
+                    <img src="../static/Img/usuario.png" alt="Proveedor">
+                    <p><b>Nombre:</b> Jahir De La Cruz</p>
+                    <p><b>Encargado:</b> Lider MAIN y Programación del Backend</p>
+                    <p style="text-align: justify;"><b>Descripción:</b> Me especialice principalmente en dar función a la lógica del negocio en el lado Backend.</p>
+                    <p><b>Redes Sociales:</b></p>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="provider-item">
+                    <img src="../static/Img/prov/Hiram.png" alt="Proveedor 2">
+                    <p><b>Nombre:</b> Hiram Gonzalez (CHIPITIN)</p>
+                    <p><b>Encargado:</b> Lider grupo de diseñadores, Analista</p>
+                    <p><b>Descripción:</b> Gestión del grupo de diseñadores y diseño a la página principal. (Se encarga de que salgan bien las cosas)</p>
+                    <p><b>Redes Sociales:</b></p>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                 <div class="provider-item">
+                    <!-- <img src="../static/Img/prov/Luis.png" alt="Proveedor 3"> -->
+                    <img src="../static/Img/usuario.png" alt="Proveedor">
+                    <p><b>Nombre:</b> Luis Ponce</p>
+                    <p><b>Encargado:</b> Funcionalidad y Efectos en la página</p>
+                    <p><b>Descripción:</b> Encargado de proporcionar una mejor experiencia visual dentro de la página.</p>
+                    <p><b>Redes Sociales:</b></p>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                 <div class="provider-item">
+                    <img src="../static/Img/prov/Mike.png" alt="Proveedor 4">
+                    <p><b>Nombre:</b> Miguel Quintero</p>
+                    <p><b>Encargado:</b> Diseño de header y footer</p>
+                    <p><b>Descripción:</b> Encargado de diseñar el menu y el footer asi como unos cuantos formularios.</p>
+                    <p><b>Redes Sociales:</b></p>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="provider-item">
+                    <img src="../static/Img/prov/Cristian.png" alt="Proveedor 5">
+                    <p><b>Nombre:</b> Cristian Alvarez (Klosswat)</p>
+                    <p><b>Encargado:</b> Diseño de esta página de proveedores</p>
+                    <p><b>Descripción:</b> Encargado de proporcionar diseño a esta página</p>
+                    <p><b>Redes Sociales:</b></p>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="provider-item">
+                    <img src="../static/Img/prov/Suri.png" alt="Proveedor 6">
+                    <p><b>Nombre:</b> Suri Hernandez</p>
+                    <p><b>Encargado:</b> Diseñadora y Capturista de datos</p>
+                    <p><b>Descripción:</b> Encargada de ir registrando los reportes e ir registrando los avances que se tienen</p>
+                    <p><b>Redes Sociales:</b></p>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="provider-item">
+                    <img src="../static/Img/prov/Coffe.png" alt="Proveedor 7">
+                    <p><b>Nombre:</b> Abisaí Ramos (Cofi) </p>
+                    <p><b>Encargado:</b> Diseño del Blog, paginas de Administrador y capturista de datos. </p>
+                    <p><b>Descripción:</b>  Encargado del diseño de diversas paginas.</p>
+                    <p><b>Redes Sociales:</b></p>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="provider-item">
+                    <!-- <img src="../static/Img/prov/Edson.png" alt="Proveedor 8"> -->
+                    <img src="../static/Img/usuario.png" alt="Proveedor">
+                    <p><b>Nombre:</b> Edson Rodriguez</p>
+                    <p><b>Encargado:</b>Capturista de datos</p>
+                    <p><b>Descripción:</b> Encargado de apoyar en el registro de datos e inventario.</p>
+                    <p><b>Redes Sociales:</b></p>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-
-    <h2>Conoce a nuestros afiliados</h2>
-
-  
-    <div class="providers">
-        <!-- Proveedor 1 -->
-        <div class="provider-item">
-            <img src="tu-imagen-proveedor1.jpg" alt="Proveedor 1">
-            <!-- Deja este espacio en blanco para luego añadir la descripción -->
-        </div>
-
-        <!-- Proveedor 2 -->
-        <div class="provider-item">
-            <img src="tu-imagen-proveedor2.jpg" alt="Proveedor 2">
-            <!-- Deja este espacio en blanco para luego añadir la descripción -->
-        </div>
-
-         <!-- Proveedor 3 -->
-         <div class="provider-item">
-            <img src="tu-imagen-proveedor3.jpg" alt="Proveedor 3">
-            <!-- Deja este espacio en blanco para luego añadir la descripción -->
-        </div>
-
-         <!-- Proveedor 4 -->
-         <div class="provider-item">
-            <img src="tu-imagen-proveedor4.jpg" alt="Proveedor 4">
-            <!-- Deja este espacio en blanco para luego añadir la descripción -->
-        </div>
-
-        <!-- Proveedor 5 -->
-        <div class="provider-item">
-            <img src="tu-imagen-proveedor5.jpg" alt="Proveedor 5">
-            <!-- Deja este espacio en blanco para luego añadir la descripción -->
-        </div>
-
-        
-    </div>
-
-</body>
-
-</html>
-
-
 
 {% endblock %}

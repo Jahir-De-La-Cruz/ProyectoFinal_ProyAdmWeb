@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Marca(models.Model):
@@ -39,6 +39,7 @@ class Producto(models.Model):
         return self.nombre + " - " + "Cantidad: " + str(self.cantidad) + " unidades"
 
 class Compra(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, default='')
     nombreCompleto = models.CharField(max_length=100)
     email = models.EmailField()
     telefono = models.CharField(max_length=20)
@@ -47,7 +48,7 @@ class Compra(models.Model):
     fechaCompra = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"Compro: " + self.nombreCompleto + ", el día " + str(self.fechaCompra.date())
+        return f"Compra realizada por: {self.usuario.username} el día {self.fechaCompra.date()}"
 
 class CompraProducto(models.Model):
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)

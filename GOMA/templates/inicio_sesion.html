@@ -11,7 +11,7 @@
 {% block content %}
 
 <!-- Agregar la información, (MEJOREN LA ESTRUCTURA) -->
-    <div class="contenedor__formularios" style="margin-top: 100px;">
+    <div class="contenedor__formularios" style="margin-top: 210px; margin-bottom: 200px;">
         <div class="contenedor__formularios-login">
             <div>
                 <h1>Iniciar Sesión</h1>
@@ -37,6 +37,7 @@
                     {{ formLogin.password }}
                 </div>
                 <div>
+                    <a href="{% url 'registrar' %}">No tienes una cuenta aún? Registrate</a><br>
                     <button>Iniciar Sesión</button>
                 </div>
             </form>

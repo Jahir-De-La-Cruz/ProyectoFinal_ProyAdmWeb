@@ -1,3 +1,92 @@
 .contenedor__formularios {
     margin-top: 80px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.mensaje__Error {
+    color: #f80606;
+    margin-bottom: 10px;
+}
+
+.mensaje__Success {
+    color: #08f708;
+    margin-bottom: 10px;
+}
+
+.contenedor__formularios div h1 {
+    margin-bottom: 10px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.checkbox-container {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #e62626;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(155, 34, 34);
+}
+
+.contenedor__todo {
+    margin-top: 80px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    text-align: center;
+}
+
+.contenedor {
+    display: flex;
+    text-align: left;
+}
+
+.contenedor .contenedor__formularios {
+    margin: 0px 20px;
 }

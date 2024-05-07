@@ -15,8 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from GOMA.views import IndexView, ProductosView, SobreNosotrosView, MarcasView, ProveedoresView, NuevoProductoView, AgregarProveedoresView, LoginView, SuperusuarioRegistroView, RegistroView, CerrarSesionView, BlogView, CrearNuevoBlogView, ObtenerDetalles
+from django.urls import path, include
+from GOMA.views import (IndexView, ProductosView, SobreNosotrosView, ProveedoresView, NuevoProductoView, 
+AgregarProveedoresView, LoginView, SuperusuarioRegistroView, RegistroView, CerrarSesionView, BlogView, 
+CrearNuevoBlogView, ObtenerDetallesView, ConfirmacionCompraView, ContactView)
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,7 +27,6 @@ urlpatterns = [
     path('', IndexView.as_view(), name="home"),
     path('productos/', ProductosView.as_view(), name="productos"),
     path('sobre_nosotros/', SobreNosotrosView.as_view(), name="sobre_nosotros"),
-    path('marcas/', MarcasView.as_view(), name="marcas"),
     path('proveedores/', ProveedoresView.as_view(), name="proveedores"),
     path('nuevo_producto/', NuevoProductoView.as_view(), name="nuevo_producto"),
     path('nuevo_proveedor/',AgregarProveedoresView.as_view(), name="nuevo_proveedor"),
@@ -35,7 +36,10 @@ urlpatterns = [
     path('cerrar_sesion/', CerrarSesionView.as_view(), name="cerrar_sesion"),
     path('blog/', BlogView.as_view(), name="blog"),
     path('crear_nuevo_blog/', CrearNuevoBlogView.as_view(), name="nuevo_blog"),
-    path('obtener_detalles/<int:producto_id>/', ObtenerDetalles.as_view(), name='obtener_detalles')
+    path('obtener_detalles/<int:producto_id>/', ObtenerDetallesView.as_view(), name='obtener_detalles'),
+    path('confirmar_compra/', ConfirmacionCompraView.as_view(), name='confirmar_compra'),
+    path('contact/', ContactView.as_view(), name='contact'),
+    path('', include('GOMA_admin.urls'))
 ]
 
 if settings.DEBUG:
