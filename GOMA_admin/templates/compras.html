@@ -16,6 +16,8 @@
                         <th>Cliente <i class="bi bi-chevron-expand"></i></th>
                         <th>Email <i class="bi bi-chevron-expand"></i></th>
                         <th>Telefono <i class="bi bi-chevron-expand"></i></th>
+                        <th>Cantidad Productos <i class="bi bi-chevron-expand"></i></th>
+                        <th>Productos <i class="bi bi-chevron-expand"></i></th>
                         <th>Precio Total <i class="bi bi-chevron-expand"></i></th>
                         <th>Fecha de Compra <i class="bi bi-chevron-expand"></i></th>
                         <th>Acciones</th>
@@ -27,6 +29,8 @@
                             <td>{{ compra.nombreCompleto }}</td>
                             <td>{{ compra.email }}</td>
                             <td>{{ compra.telefono }}</td>
+                            <td>{{ compra.productos.cantidad }}</td>
+                            <td>{{ compra.productos }}</td>
                             <td>{{ compra.precioFinal }}</td>
                             <td>{{ producto.fechaCompra }}</td>
                             <td>

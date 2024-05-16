@@ -16,20 +16,13 @@ body {
 }
 
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
     transition: 0.7s;
-    padding: 30px 20px;
     z-index: 10;
-}
-
-header.abajo {
-    background: #a70c11;
-    padding: 15px 20px;
+    /* background: #a70c11; */
+    padding: 30px 20px;
 }
 
 header .logo {
@@ -38,13 +31,8 @@ header .logo {
     font-weight: bold;
     font-style: oblique;
     font-size: 2em;
-    /* letter-spacing: 2px; */
     transition: 1.5s;
     text-decoration: none;
-}
-
-header .logo p {
-    font-size: 12px;
 }
 
 nav {
@@ -78,125 +66,6 @@ header ul li a {
 header ul li a:hover {
     text-decoration: underline;
 }
-
-.zonal {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: url('../Img/portada.jpg');
-    background-size: cover;
-    background-position: center center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    position: relative;
-}
-
-.zonal::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-header.abajo .logo,
-header.abajo ul li a {
-    color: #fff;
-}
-
-.Gran-image {
-    position: relative;
-}
-
-.Gran-image img {
-    width: 100%;
-    height: auto;
-}
-
-.Inicio {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #ffffff;
-}
-
-.Inicio h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.Inicio p {
-    font-size: 22px;
-}
-
-/* Seccion Carrusel */
-
-.slider-frame {
-    width: 100%;
-    height: auto;
-    margin: 50px auto;
-    overflow: hidden;
-}
-  
-.slider-frame ul {
-    display: flex;
-    padding: 0;
-    width: 400%;
-    animation: slide 20s infinite alternate ease-in-out;
-}
-  
-.slider-frame li {
-    width: 100%;
-    list-style: none;
-}
-  
-.slider-frame img {
-    width: 100%;
-    height: 550px;
-    object-fit: cover;
-}
-  
-@keyframes slide {
-    0% {
-      margin-left: 0;
-    }
-  
-    20% {
-      margin-left: 0;
-    }
-  
-    25% {
-      margin-left: -100%;
-    }
-  
-    45% {
-      margin-left: -100%;
-    }
-  
-    50% {
-      margin-left: -200%;
-    }
-  
-    70% {
-      margin-left: -200%;
-    }
-  
-    75% {
-      margin-left: -300%;
-    }
-  
-    100% {
-      margin-left: -300%;
-    }
-}
-
-/* Seccion del footer */
 
 .pie-pagina {
     width: 100%;

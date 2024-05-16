@@ -22,7 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
             cartItemsContainer.appendChild(row);
         }
 
+        // Actualizar el precio total del carrito
         updateTotalPrice();
+
+        // Mostrar el carrito
+        cartContainer.classList.add('show');
     }
 
     // Función para buscar un elemento del carrito por el ID del producto
@@ -37,8 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
         row.innerHTML = `
             <td><img src="${producto.imagen}" alt="${producto.nombre}" style="width: 50px;"></td>
             <td>${producto.nombre}</td>
-            <td>${producto.precio.toFixed(2)}</td>
+            <td>${producto.precio.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}</td>
             <td><input type="number" class="item-quantity" value="1" min="1"></td>
+            <td><button class="delete-button"><i class="fa-solid fa-times"></i></button></td>
         `;
         return row;
     }
@@ -47,15 +52,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateTotalPrice() {
         let totalPrice = 0;
         cartItemsContainer.querySelectorAll('tr').forEach(row => {
-            const price = parseFloat(row.querySelector('td:nth-child(3)').textContent);
-            const quantity = parseInt(row.querySelector('.item-quantity').value);
-            totalPrice += price * quantity;
+            const priceText = row.querySelector('td:nth-child(3)').textContent; // Obtener el texto del precio
+            const price = parseFloat(priceText.replace('$', '').replace(',', '')); // Convertir el texto del precio a número
+            const quantity = parseInt(row.querySelector('.item-quantity').value); // Obtener la cantidad del producto
+            totalPrice += price * quantity; // Calcular el precio total
         });
-        cartTotalPrice.textContent = `Precio total: $${totalPrice.toFixed(2)}`;
+        cartTotalPrice.textContent = `Precio total: ${totalPrice.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}`; // Mostrar el precio total formateado como pesos mexicanos
     }
+
 
     // Función para mostrar u ocultar el carrito
     function toggleCart() {
+        console.log('Haciendo clic en el botón del carrito...');
         cartContainer.classList.toggle('show');
     }
 
@@ -69,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
     addToCartButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             const productId = event.currentTarget.dataset.productId;
-            console.log('Producto ID:', productId);
             const productName = event.currentTarget.closest('.seccion__productos-producto').querySelector('.productos__titulo').textContent;
-            const productPrice = parseFloat(event.currentTarget.closest('.seccion__productos-producto').querySelector('.productos__precio').textContent.replace('Precio: ', '').replace('MXN', ''));
+            const productPrice = parseFloat(event.currentTarget.dataset.productPrice); // Acceder al precio desde el atributo de datos
+
             const productImage = event.currentTarget.closest('.seccion__productos-producto').querySelector('.productos__img').src;
 
             const producto = {
@@ -89,11 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
     buyButton.addEventListener('click', () => {
         const cartItems = cartItemsContainer.getElementsByTagName('tr');
         if (cartItems.length === 0) {
-            Swal.fire({
+            swal({
                 title: 'Carrito vacío',
                 text: 'El carrito de compras está vacío. Agrega productos antes de realizar la compra.',
-                icon: 'error',
-                confirmButtonText: 'Aceptar'
+                icon: "error",
+                button: "Aceptar"
             });
             return;
         }
@@ -105,34 +113,35 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < cartItems.length; i++) {
             const productName = cartItems[i].getElementsByTagName('td')[1].textContent;
             const productQuantity = cartItems[i].querySelector('.item-quantity').value;
-            const productPrice = parseFloat(cartItems[i].getElementsByTagName('td')[2].textContent.replace(' MXN', ''));
+            const productPrice = parseFloat(cartItems[i].getElementsByTagName('td')[2].textContent.replace('$', '').replace(',', ''));
             productDetails.push(encodeURIComponent(productName));
             productQuantities.push(productQuantity);
             productPrices.push(productPrice);
         }
 
         // Construir la URL con los datos del carrito
-        const url = `/comprar_productos/?productos=${productDetails.join(',')}&cantidades=${productQuantities.join(',')}&precio_final=${calculateTotalPrice(productPrices)}`;
+        const url = `/confirmar_compra/?productos=${productDetails.join(',')}&cantidades=${productQuantities.join(',')}&precio_final=${calculateTotalPrice(productPrices)}`;
 
         // Mostrar mensaje de confirmación con SweetAlert
-        Swal.fire({
+        swal({
             title: '¿Estás seguro de realizar la compra?',
-            text: `Resumen del pedido:\n\n${productDetails.map((detail, index) => `${decodeURIComponent(detail)} (Cantidad: ${productQuantities[index]}) - Precio: $${productPrices[index].toFixed(2)} MXN`).join('\n')}\nTotal: $${calculateTotalPrice(productPrices)} MXN\n\nUna vez confirmada la compra, los productos serán enviados y no podrás deshacer esta acción.`,
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Confirmar',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Redirigir a la página de compra
-                window.location.href = url;
+            text: `Resumen del pedido:\n\n${productDetails.map((detail, index) => `${decodeURIComponent(detail)} (Cantidad: ${productQuantities[index]}) - Precio: ${productPrices[index].toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}`).join('\n')}\nTotal: ${calculateTotalPrice(productPrices).toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}\n\nUna vez confirmada la compra, los productos serán enviados y no podrás deshacer esta acción.`,
+            icon: 'warning',
+            buttons: {
+              cancel: 'Cancelar',
+              confirm: 'Comprar'
+            },
+            dangerMode: true
+          }).then((confirmed) => {
+            if (confirmed) {
+              window.location.href = url; // Redirige si el usuario confirma la compra
             }
-        });
+          });          
     });
 
     // Función para calcular el precio total
     function calculateTotalPrice(prices) {
-        return prices.reduce((total, price) => total + price, 0).toFixed(2);
+        return prices.reduce((total, price) => total + price, 0);
     }
 
     // Manejar clic en el botón de vaciar pedido
@@ -140,5 +149,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Vaciar el carrito
         cartItemsContainer.innerHTML = '';
         updateTotalPrice();
+    });
+
+    // Manejar clic en el botón de eliminar producto del carrito
+    cartItemsContainer.addEventListener('click', (event) => {
+        if (event.target.classList.contains('delete-button')) {
+            const row = event.target.closest('tr');
+            row.remove();
+            updateTotalPrice();
+        }
     });
 });

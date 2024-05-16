@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.mixins import AccessMixin
 from django.contrib.auth.views import redirect_to_login
 from django.contrib import messages
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, JsonResponse
 from django.shortcuts import redirect
 
 class AdminRequiredMixin(AccessMixin):
@@ -18,9 +18,3 @@ class UserRequiredMixin(UserPassesTestMixin):
     def test_func(self):
         return not self.request.user.is_superuser
     
-class RequiredBuyMixin:
-    def dispatch(self, request, *args, **kwargs):
-        if not request.session.get('carrito'):
-            messages.error(request, 'No hay elementos en el carrito para comprar!')
-            return redirect('productos')
-        return super().dispatch(request, *args, **kwargs)

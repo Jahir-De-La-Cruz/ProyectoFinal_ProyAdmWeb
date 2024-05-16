@@ -9,7 +9,7 @@ from django.db import IntegrityError
 from .models import Post, Producto, Marca, Categoria
 from .forms import ProductosForm, CreatePostForm, CategoriaForm, MarcaForm
 from django.contrib import messages
-from .mixins import AdminRequiredMixin, RequiredBuyMixin
+from .mixins import AdminRequiredMixin
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -32,7 +32,7 @@ class ContactView(View):
             'message' : message
         })
         
-        email = EmailMessage(subject, template, settings.EMAIL_HOST_USER, ['soyjahirjesua04@gmail.com'])
+        email = EmailMessage(subject, template, settings.EMAIL_HOST_USER, ['correoejemplo@gmail.com'])
         
         email.fail_silently = False
         email.send()
@@ -273,18 +273,35 @@ class AgregarProveedoresView(LoginRequiredMixin, AdminRequiredMixin, View):
             'error': 'No se pudo identificar el formulario enviado.'
         })
 
-class ObtenerDetallesView(View):
-    def get(self, request, producto_id):
-        producto = get_object_or_404(Producto, id=producto_id)
-        detalles = {
-            'imagen_url': producto.imagen.url,
-            'nombre': producto.nombre,
-            'descripcion': producto.descripcion,
-            'precio': producto.precio,
-            'marca': producto.marca.nombre,
-        }
-        return JsonResponse(detalles)
+class BuscarProductosView(View):
+    def get(self, request):
+        query = request.GET.get('q')
+
+        if query:
+            productos = Producto.objects.filter(nombre__icontains=query) | Producto.objects.filter(categoria__nombre__icontains=query)
+            detalles = [{
+                'imagen_url': producto.imagen.url if producto.imagen else None,
+                'nombre': producto.nombre,
+                'descripcion': producto.descripcion,
+                'precio': producto.precio,
+                'marca': producto.marca.nombre,
+                'cantidad': producto.cantidad,
+                'categoria': producto.categoria.nombre
+            } for producto in productos]
+        else:
+            # Si no hay consulta, devuelve una lista vacía
+            detalles = []
+
+        return JsonResponse(detalles, safe=False)
     
-class ConfirmacionCompraView(RequiredBuyMixin, View):
+class ConfirmacionCompraView(View):
     def get(self, request):
         return render(request, 'confirmar_compra.html')
+    
+    def post(self, request):
+        comprador = request.POST.get('nombre_comprador')
+        correo = request.POST.get('correo')
+        telefono = request.POST.get('telefono')
+        productos_nombres = request.POST.get('productos').split(',')
+        cantidades = request.POST.get('cantidad_productos').split(',')
+        precio_final = request.POST.get('precio_final')
