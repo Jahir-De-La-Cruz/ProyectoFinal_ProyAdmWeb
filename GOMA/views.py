@@ -6,13 +6,14 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .models import Post, Producto, Marca, Categoria
+from .models import Post, Producto, Marca, Categoria, Compra, CompraProducto
 from .forms import ProductosForm, CreatePostForm, CategoriaForm, MarcaForm
 from django.contrib import messages
 from .mixins import AdminRequiredMixin
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.urls import reverse
 
 class IndexView(View):
     def get(self, request):
@@ -294,14 +295,48 @@ class BuscarProductosView(View):
 
         return JsonResponse(detalles, safe=False)
     
-class ConfirmacionCompraView(View):
+class ConfirmacionCompraView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'confirmar_compra.html')
     
     def post(self, request):
-        comprador = request.POST.get('nombre_comprador')
+        usuario = usuario = request.user
+        nombre_comprador = request.POST.get('nombre_comprador')
         correo = request.POST.get('correo')
         telefono = request.POST.get('telefono')
         productos_nombres = request.POST.get('productos').split(',')
         cantidades = request.POST.get('cantidad_productos').split(',')
         precio_final = request.POST.get('precio_final')
+        
+        # Verificar que las listas tengan la misma longitud
+        if len(productos_nombres) != len(cantidades):
+            mensaje = "La cantidad de productos seleccionados y la cantidad de productos en stock no coinciden"
+            return render(request, 'confirmar_compra.html', {'error': mensaje})
+        
+        
+        nueva_compra = Compra(usuario=usuario, nombreCompleto=nombre_comprador, email=correo, telefono=telefono, precioFinal=precio_final)
+        nueva_compra.save()
+        
+        # Iterar sobre los productos seleccionados
+        for nombre_producto, cantidad in zip(productos_nombres, cantidades):
+            producto = Producto.objects.get(nombre=nombre_producto)
+            cantidad = int(cantidad)
+            
+            # Verificar la disponibilidad del producto en el inventario
+            if cantidad > producto.cantidad:
+                mensaje = f"No hay suficiente stock para el producto '{producto.nombre}'"
+                nueva_compra.delete()  # Eliminar la compra creada
+                return render(request, 'confirmar_compra.html', {
+                    'error': mensaje
+                })
+            
+            # Crear una relación CompraProducto
+            compra_producto = CompraProducto(compra=nueva_compra, producto=producto, cantidad=cantidad)
+            compra_producto.save()
+            
+            # Actualizar la cantidad disponible del producto
+            producto.cantidad -= cantidad
+            producto.save()
+        
+        messages.success(request, "La compra se realizó con éxito")
+        return redirect(reverse('productos') + '?success=true')

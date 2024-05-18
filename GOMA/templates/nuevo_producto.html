@@ -9,49 +9,49 @@
 
 {% block content %}
 
-<div class="contenedor__formularios" style="margin-top: 140px; margin-bottom: 60px;">
-    <div>
-        <h1>Agregar Producto Nuevo</h1>
-        <h3 class="mensaje__Error">{{ error }}</h3>
-    </div>
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="input-group">
-            <label for="nombre">Nombre:</label>
-            {{ form.nombre }}
+    <div class="contenedor__formularios" style="margin-top: 140px; margin-bottom: 60px;">
+        <div>
+            <h1>Agregar Producto Nuevo</h1>
+            <h3 class="mensaje__Error">{{ error }}</h3>
         </div>
-        <div class="input-group">
-            <label for="descripcion">Descripción:</label>
-            {{ form.descripcion }}
-        </div>
-        <div class="input-group">
-            <label for="precio">Precio:</label>
-            {{ form.precio }}
-        </div>
-        <div class="input-group">
-            <label for="cantidad">Cantidad:</label>
-            {{ form.cantidad }}
-        </div>
-        <div class="input-group">
-            <label for="disponibilidad">Disponibilidad:</label>
-            <div class="checkbox-container">
-                {{ form.disponibilidad }}
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="nombre">Nombre:</label>
+                {{ form.nombre }}
             </div>
-        </div>        
-        <div class="input-group">
-            <label for="marca">Marca:</label>
-            {{ form.marca }}
-        </div>
-        <div class="input-group">
-            <label for="categoria">Categoría:</label>
-            {{ form.categoria }}
-        </div>
-        <div class="input-group">
-            <label for="imagen">Imagen:</label>
-            {{ form.imagen }}
-        </div>
-        <button class="btn-guardar">Guardar</button>
-    </form>
-</div>
+            <div class="input-group">
+                <label for="descripcion">Descripción:</label>
+                {{ form.descripcion }}
+            </div>
+            <div class="input-group">
+                <label for="precio">Precio:</label>
+                {{ form.precio }}
+            </div>
+            <div class="input-group">
+                <label for="cantidad">Cantidad:</label>
+                {{ form.cantidad }}
+            </div>
+            <div class="input-group">
+                <label for="disponibilidad">Disponibilidad:</label>
+                <div class="checkbox-container">
+                    {{ form.disponibilidad }}
+                </div>
+            </div>        
+            <div class="input-group">
+                <label for="marca">Marca:</label>
+                {{ form.marca }}
+            </div>
+            <div class="input-group">
+                <label for="categoria">Categoría:</label>
+                {{ form.categoria }}
+            </div>
+            <div class="input-group">
+                <label for="imagen">Imagen:</label>
+                {{ form.imagen }}
+            </div>
+            <button class="btn-guardar">Guardar</button>
+        </form>
+    </div>
 
 {% endblock %}

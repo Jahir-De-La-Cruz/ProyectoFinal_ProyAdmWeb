@@ -3,10 +3,17 @@
 {% block content %}
 
     <div class="contenedor__inicio">
-        <div class="contenedor_titulo">
+        <div class="contenedor_titulo"> 
             <h1>Bienvenido {{ request.user.username }} al Panel para Administradores</h1>
         </div>
         <div class="container">
+            {% if messages %}
+                <div class="mensajes" style="margin-top: 6px;">
+                    {% for message in messages %}
+                        <h3 class="mensaje__Success">{{ message }}</h3>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <div class="table_header">
                 <h2>Categorias</h2>
                 <button><a href="{% url 'nuevo_proveedor' %}">Añadir Categoria</a></button>
@@ -27,8 +34,8 @@
                             <td>{{ categoria.nombre }}</td>
                             <td>{{ categoria.descripcion }}</td>
                             <td>
-                                <button><i class="bi bi-pencil-square" id="icons"></i></button>
-                                <button><i class="bi bi-trash3" id="icons"></i></button>
+                                <a href="{% url 'editar_categoria' categoria.id %}"><i class="bi bi-pencil-square" id="icons"></i></a>
+                                <a href="{% url 'eliminar_categoria' categoria.id %}"><i class="bi bi-trash3" id="icons"></i></a>
                             </td>
                         </tr>
                     {% endfor %}

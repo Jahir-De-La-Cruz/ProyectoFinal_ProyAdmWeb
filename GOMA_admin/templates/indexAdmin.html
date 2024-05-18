@@ -9,9 +9,16 @@
             <h1>Bienvenido {{ request.user.username }} al Panel para Administradores</h1>
         </div>
         <div class="container">
+            {% if messages %}
+                <div class="mensajes" style="margin-top: 6px;">
+                    {% for message in messages %}
+                        <h3 class="mensaje__Success">{{ message }}</h3>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <div class="table_header">
                 <h2>Productos</h2>
-                <button><a href="{% url 'nuevo_producto' %}">Crear Nuevo</a></button>
+                <button><a href="{% url 'nuevo_producto' %}">Nuevo Producto</a></button>
             </div>
             <table class="display" id="MiTabla">
                 <thead>
@@ -43,8 +50,8 @@
                             <td>{{ producto.categoria }}</td>
                             <td>{{ producto.marca }}</td>
                             <td>
-                                <button><i class="bi bi-pencil-square" id="icons"></i></button>
-                                <button><i class="bi bi-trash3" id="icons"></i></button>
+                                <a href="{% url 'editar_producto' producto.id %}"><i class="bi bi-pencil-square" id="icons"></i></a>
+                                <a href="{% url 'eliminar_producto' producto.id %}"><i class="bi bi-trash3" id="icons"></i></a>
                             </td>
                         </tr>
                     {% endfor %}

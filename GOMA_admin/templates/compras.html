@@ -20,24 +20,33 @@
                         <th>Productos <i class="bi bi-chevron-expand"></i></th>
                         <th>Precio Total <i class="bi bi-chevron-expand"></i></th>
                         <th>Fecha de Compra <i class="bi bi-chevron-expand"></i></th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for compra in compras %}
-                        <tr>
-                            <td>{{ compra.nombreCompleto }}</td>
-                            <td>{{ compra.email }}</td>
-                            <td>{{ compra.telefono }}</td>
-                            <td>{{ compra.productos.cantidad }}</td>
-                            <td>{{ compra.productos }}</td>
-                            <td>{{ compra.precioFinal }}</td>
-                            <td>{{ producto.fechaCompra }}</td>
-                            <td>
-                                <button><i class="bi bi-pencil-square" id="icons"></i></button>
-                                <button><i class="bi bi-trash3" id="icons"></i></button>
-                            </td>
-                        </tr>
+                    {% for cliente in clientes_con_compras %}
+                        {% if cliente.compra_set.exists %}
+                            {% for compra in cliente.compra_set.all %}
+                                <tr>
+                                    <td>{{ cliente.username }}</td>
+                                    <td>{{ cliente.email }}</td>
+                                    <td>{{ compra.telefono }}</td>
+                                    <td>
+                                        {% for compra in cliente.compra_set.all %}
+                                            {{ compra.compraproducto_set.count }}
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for compraproducto in compra.compraproducto_set.all %}
+                                            {{ compraproducto.producto.nombre }}
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{ compra.precioFinal }}</td>
+                                    <td>{{ compra.fechaCompra }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
                     {% endfor %}
                 </tbody>
             </table>

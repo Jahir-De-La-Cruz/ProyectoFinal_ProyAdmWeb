@@ -101,10 +101,9 @@ header.abajo ul li a {
 .container {
     display: flex;
     flex-direction: column;
-    box-shadow: 8px 8px 5px 0px #bdbdbf;
-    width: 80%;
+    box-shadow: 8px 8px 5px 0px #7e7e7e;
+    width: 100%;
     background-color: #fff;
-    border-radius: 20px;
 }
 
 .container .table_header {
@@ -168,10 +167,11 @@ header.abajo ul li a {
     margin-top: 1rem;
     width: 100%;
     margin-bottom: 1rem;
+    border: 1px solid #ccc;
 }
 
 .container table thead {
-    background-color: #ff4444;
+    background-color: #cc0000;
     color: #fff;
 }
 
@@ -186,17 +186,17 @@ header.abajo ul li a {
     border-bottom: 1px solid #dfdfdf;
 }
 
-.container table tbody tr td button {
-    background: none;
-    outline: none;
-    border: none;
+.container table tbody tr td a {
+    background: none !important;
+    outline: none !important;
+    border: none !important;
 }
 
-.container table tbody tr td button:hover {
+.container table tbody tr td a:hover {
     background: none;
 }
 
-.container table tbody tr td button #icons {
+.container table tbody tr td a #icons {
     font-size: 20px;
     cursor: pointer;
     margin-left: 10px;

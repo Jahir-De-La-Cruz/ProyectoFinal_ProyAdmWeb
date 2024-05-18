@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
             dangerMode: true
           }).then((confirmed) => {
             if (confirmed) {
-              window.location.href = url; // Redirige si el usuario confirma la compra
+              window.location.href = url;
             }
           });          
     });

@@ -57,7 +57,6 @@ class CompraProducto(models.Model):
     
     def __str__(self):
         return f"Cliente: {self.compra.nombreCompleto} - Producto: {self.producto.nombre} - {self.cantidad} unidades"
-    
 
 class Post(models.Model):
     titulo = models.CharField(max_length=200)

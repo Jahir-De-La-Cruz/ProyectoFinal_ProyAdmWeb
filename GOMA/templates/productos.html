@@ -43,6 +43,22 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const success = urlParams.get('success');
+
+            if (success === 'true') {
+                swal({
+                    title: '¡Compra exitosa!',
+                    text: 'Tu compra se ha realizado con éxito.',
+                    icon: 'success',
+                    button: 'Aceptar'
+                });
+            }
+        });
+    </script>
+
     <!-- <script>
         $(document).ready(function() {
             $('#form-busqueda').submit(function(event) {

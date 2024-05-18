@@ -1,0 +1,100 @@
+.contenedor__formularios {
+    margin-top: 80px !important;
+    padding: 20px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 10px !important;
+    max-width: 550px !important;
+    margin: 0 auto !important;
+    background-color: #fff !important;
+}
+
+.mensaje__Error {
+    color: #f80606 !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    font-size: 16px !important;
+    font-family: sans-serif !important;
+    font-weight: bold;
+}
+
+.mensaje__Success {
+    color: #007000 !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    font-size: 16px !important;
+    font-family: sans-serif !important;
+    font-weight: bold;
+}
+
+.contenedor__formularios div h1 {
+    margin-bottom: 10px !important;
+}
+
+.input-group {
+    margin-bottom: 20px !important;
+}
+
+label {
+    display: block !important;
+    margin-bottom: 5px !important;
+}
+
+input, select {
+    width: 100% !important;
+    padding: 10px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+}
+
+.checkbox-container {
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px !important;
+}
+
+textarea {
+    width: 100% !important;
+    height: 150px !important;
+    padding: 10px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    box-sizing: border-box !important;
+    resize: none !important;
+}
+
+button {
+    margin-top: 10px !important;
+    padding: 10px 20px !important;
+    background-color: #e62626 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+}
+
+button:hover {
+    background-color: rgb(155, 34, 34) !important;
+}
+
+.contenedor__todo {
+    margin-top: 80px !important;
+    padding: 20px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 10px !important;
+    max-width: 700px !important;
+    margin: 0 auto !important;
+    background-color: #fff !important;
+    text-align: center !important;
+}
+
+.contenedor {
+    display: flex !important;
+    text-align: left !important;
+}
+
+.contenedor .contenedor__formularios {
+    margin: 0px 20px !important;
+}
