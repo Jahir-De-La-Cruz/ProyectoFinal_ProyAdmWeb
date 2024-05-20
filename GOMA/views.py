@@ -33,7 +33,7 @@ class ContactView(View):
             'message' : message
         })
         
-        email = EmailMessage(subject, template, settings.EMAIL_HOST_USER, ['correoejemplo@gmail.com'])
+        email = EmailMessage(subject, template, settings.EMAIL_HOST_USER, ['soyjahirjesua04@gmail.com'])
         
         email.fail_silently = False
         email.send()

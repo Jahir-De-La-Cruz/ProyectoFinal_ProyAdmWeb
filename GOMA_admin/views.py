@@ -31,7 +31,7 @@ class EditarProductosView(LoginRequiredMixin, AdminRequiredMixin, View):
         form = ProductosForm(request.POST, request.FILES, instance=producto)
         if form.is_valid():
             form.save()
-            messages.success(request, f"El producto '{producto.nombre}' se actualizó correctamente")
+            messages.success(request, f"El producto {producto.nombre} se actualizó correctamente")
             return redirect('index_admin')
         else:
             return render(request, 'editar_productos.html', {
@@ -89,7 +89,7 @@ class EditarMarcasView(LoginRequiredMixin, AdminRequiredMixin, View):
         form = MarcaForm(request.POST, instance=marca)
         if form.is_valid():
             form.save()
-            messages.success(request, f"La marca '{marca.nombre}' se actualizó correctamente")
+            messages.success(request, f"La marca {marca.nombre} se actualizó correctamente")
             return redirect('marcasAdmin')
         else:
             return render(request, 'editar_marcas.html', {
@@ -102,7 +102,7 @@ class EliminarMarcasView(LoginRequiredMixin, AdminRequiredMixin, View):
     def get(self, request, marca_id):
         marca = get_object_or_404(Marca, pk=marca_id)
         marca.delete()
-        messages.success(request, f"La marca '{marca.nombre}' se eliminó correctamente")
+        messages.success(request, f"La marca {marca.nombre} se eliminó correctamente")
         return redirect('marcasAdmin')
     
 class CategoriasAdminView(LoginRequiredMixin, AdminRequiredMixin, View):
@@ -126,7 +126,7 @@ class EditarCategoriasView(LoginRequiredMixin, AdminRequiredMixin, View):
         form = CategoriaForm(request.POST, instance=categoria)
         if form.is_valid():
             form.save()
-            messages.success(request, f"La categoria '{categoria.nombre}' se actualizó correctamente")
+            messages.success(request, f"La categoria {categoria.nombre} se actualizó correctamente")
             return redirect('categorias')
         else:
             return render(request, 'editar_categorias.html', {
@@ -139,4 +139,5 @@ class EliminarCategoriasView(LoginRequiredMixin, AdminRequiredMixin, View):
     def get(self, request, categoria_id):
         categoria = get_object_or_404(Categoria, pk=categoria_id)
         categoria.delete()
+        messages.success(request, f"La marca {categoria.nombre} se eliminó correctamente")
         return redirect('categorias')

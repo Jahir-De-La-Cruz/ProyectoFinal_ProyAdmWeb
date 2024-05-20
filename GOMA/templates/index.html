@@ -10,100 +10,181 @@
 
     <!-- Aqui va toda la info de la pagina -->
     <div class="zonal">
-        <div class="Gran-image">
-            <div class="Inicio">
-                {% if request.user.is_authenticated and request.user.is_superuser %}
-                    <h1>Bienvenido Administrador {{ request.user.username }}</h1>
-                {% elif request.user.is_authenticated %}
-                    <h1>Bienvenido {{ request.user.username }}!!</h1>
-                {% else %}
-                    <h1>Bienvenido a Comercializadora GOMA</h1>
-                {% endif %}
-                    <p>Ofreciendo los mejores productos y servicios desde 1989.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="slider-frame">
-        <ul>
-            <li><img src="../static/Img/img1.jpg" alt=""></li>
-            <li><img src="../static/Img/Refaccionaria.png" alt=""></li>
-            <li><img src="../static/Img/img3.jpg" alt=""></li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <div class="card-image">
-            <img src="../static/Img/GOMAlogo.jpg" alt="" />
-        </div>
-        <div class="card-text">
-            <p>
-                <span>¿Quiénes somos?</span><br>
-                <p style="text-align: justify;">En GOMA nos dedicamos a proporcionar a nuestros clientes las mejores refacciones, partes y lubricantes para mantener sus vehículos en óptimas condiciones. Nos enorgullecemos de ofrecer productos de alta calidad y un servicio excepcional.</p>
-            </p>
-        </div>
-    </div>
-
-    <section class="contenedor sobre-nosotros" style="margin-top: 60px;">
-        <div class="contenedor-sobre-nosotros">
-            <img src="../static/Img/GOMA_info.jpeg" alt="" class="imagenen">
-            <div class="contenido-textos">
-                <h3><span>1</span> Variedad de Productos</h3>
-                <p>En GOMA, ofrecemos una amplia selección de refacciones, partes y lubricantes de las mejores marcas del mercado. Nuestro catálogo incluye todo lo que necesitas para mantener tu vehículo en perfecto estado.</p>
-                <h3><span>2</span> Servicio al Cliente</h3>
-                <p>Nuestro equipo está comprometido en brindar el mejor servicio al cliente. Estamos aquí para ayudarte a encontrar las partes que necesitas y responder a todas tus preguntas con conocimiento y profesionalismo.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="contenedor-carta">
-        <div class="contenedor-imagen">
-            <img src="../static/Img/goma_datos.jpeg" alt="">
-        </div>
-        <div class="contenedor-texto">
-            <h2 class="titulo-carta" style="text-align: center;">Gerente de GOMA</h2>
-            <p class="titulolo">Tu socio confiable en refacciones y partes automotrices</p>
-            <p class="biografia">En GOMA, nos esforzamos por ser tu proveedor de confianza en el mundo de las refacciones y partes automotrices. Nuestro compromiso es ofrecerte productos de calidad y un servicio excepcional para satisfacer todas tus necesidades.</p>
-            <div class="icon">
-                <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-facebook-square"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-twitter-square"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <div class="seccion__contacto">
-        <div>
-            <h2>Formulario de Contacto</h2>
-            <p>Contacta directo a ese Email</p>
-        </div>
-        <form method="POST" action="{% url 'contact' %}" class="contenedor__formularios" id="contactoForm">
-            {% csrf_token %}
-            {% if messages %}
-            {% for message in messages %}
-            <h3 class="mensaje__Success">{{ message }}</h3>
-            {% endfor %}
+        <div class="Inicio">
+            {% if request.user.is_authenticated and request.user.is_superuser %}
+                <h1>Bienvenido Administrador {{ request.user.username }}</h1>
+            {% elif request.user.is_authenticated %}
+                <h1>Bienvenido {{ request.user.username }}!!</h1>
+            {% else %}
+                <h1>BIENVENIDOS A GOMA</h1>
             {% endif %}
-            <div class="grupo-formulario">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="grupo-formulario">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="grupo-formulario">
-                <label for="subject">Asunto:</label>
-                <input type="text" id="subject" name="subject" required>
-            </div>
-            <div class="grupo-formulario">
-                <label for="message">Mensaje:</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            <div class="grupo-formulario">
-                <button type="submit">Enviar Mensaje</button>
-            </div>
-        </form>
+            <p>Ofrecemos Una Amplia Gama De Autopartes De Alta Calidad Para Todos Los Modelos De Vehículos. Nuestro Compromiso Es Con La Excelencia Y La Satisfacción Del Cliente.</p>
+            <a href="{% url 'productos' %}"><button>Descubre más</button></a>
+        </div>
     </div>
+
+    <section class="producto" id="productos" data-aos="fade-up" data-aos-duration="1000">
+        <div class="contenedor-de-cajas">
+            <div class="caja">
+                <i class="fas fa-car"></i>
+                <h3>Frenos</h3>
+                <p>Sistemas de frenos para todos los modelos y marcas de automóviles.</p>
+            </div>
+            <div class="caja">
+                <i class="fas fa-cogs"></i>
+                <h3>Motor</h3>
+                <p>Piezas y repuestos para motores de alta eficiencia y durabilidad.</p>
+            </div>
+            <div class="caja">
+                <i class="fas fa-tools"></i>
+                <h3>Suspensión</h3>
+                <p>Componentes de suspensión para una conducción suave y segura.</p>
+            </div>
+        </div>
+        <a href="{% url 'productos' %}"><button>Ver más</button></a>
+    </section>
+
+    <section class="nosotros" id="nosotros">
+        <h1 class="encabezado">Nosotros</h1>
+        <h3 class="titulo">Conoce más sobre nuestra empresa</h3>
+        <div class="fila">
+            <div class="imagen">
+                <img src="../static/Img/Logo_empresa.png" alt="Imagen de Goma">
+            </div>
+            <div class="contenido">
+                <h3 class="encabezado">Calidad y Confianza</h3>
+                <p>En Goma, nos dedicamos a proporcionar autopartes de la más alta calidad. Nuestra misión es garantizar que cada cliente reciba productos fiables y un servicio excepcional.</p>
+                <a href="{% url 'sobre_nosotros' %}"><button>Leer más</button></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cursos" id="cursos" data-aos="fade-up" data-aos-duration="1000">
+        <h1 class="encabezado">Nuestros Servicios</h1>
+        <h3 class="titulo">Soluciones integrales para tu vehículo</h3>
+        <div class="contenedor-de-cajas">
+            <div class="caja">
+                <i class="fas fa-wrench"></i>
+                <h3>Reparaciones</h3>
+                <p>Servicios de reparación con piezas originales y garantía de calidad.</p>
+            </div>
+            <div class="caja">
+                <i class="fas fa-headset"></i>
+                <h3>Asesoramiento</h3>
+                <p>Consultoría especializada para encontrar las mejores piezas para tu coche.</p>
+            </div>
+            <div class="caja">
+                <i class="fas fa-hands-helping"></i>
+                <h3>Instalación</h3>
+                <p>Instalación profesional de todas nuestras autopartes.</p>
+            </div>
+            <div class="caja">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Distribución</h3>
+                <p>Amplia red de distribución para asegurar que recibas tus pedidos a tiempo.</p>
+            </div>
+            <div class="caja">
+                <i class="fas fa-tools"></i>
+                <h3>Mantenimiento</h3>
+                <p>Planes de mantenimiento para alargar la vida útil de tu vehículo.</p>
+            </div>
+            <div class="caja">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Garantía</h3>
+                <p>Ofrecemos garantía en todas nuestras piezas y servicios.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimoniales" id="testimoniales">
+        <h1 class="encabezado">Testimoniales</h1>
+        <h3 class="titulo">Lo que nuestros clientes dicen</h3>
+        <div class="contenedor-de-cajas">
+            <div class="caja">
+                <img src="../static/Img/images/pic1.jpg" alt="Cliente 1">
+                <h3>Juan Pérez</h3>
+                <p>"Goma me ayudó a encontrar exactamente lo que necesitaba para mi coche. ¡Excelente servicio!"</p>
+                <div class="estrellas">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+            <div class="caja">
+                <img src="../static/Img/images/pic2.jpg" alt="Cliente 2">
+                <h3>María García</h3>
+                <p>"Las autopartes de Goma son de alta calidad y duraderas. Muy satisfecha con mi compra."</p>
+                <div class="estrellas">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+            <div class="caja">
+                <img src="../static/Img/images/pic3.jpg" alt="Cliente 3">
+                <h3>Carlos López</h3>
+                <p>"Gran experiencia de compra. Personal muy amable y productos excelentes."</p>
+                <div class="estrellas">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacto" id="contacto" data-aos="fade-up" data-aos-duration="1000">
+        <h1 class="encabezado">Contacto</h1>
+        <h3 class="titulo">Estamos aquí para ayudarte</h3>
+        <div class="fila">
+            <div class="contenedor-de-formulario">
+                <form method="POST" action="{% url 'contact' %}" id="contactoForm">
+                    {% csrf_token %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <h3 class="mensaje__Success">{{ message }}</h3>
+                        {% endfor %}
+                    {% endif %}
+                    <input type="text" placeholder="Nombre" id="name" name="name" required>
+                    <input type="email" placeholder="Correo Electrónico" id="email" name="email" required>
+                    <input type="text" placeholder="Asunto" id="subject" name="subject" required>
+                    <textarea id="message" placeholder="Mensaje" name="message" required></textarea>
+                    <button type="submit">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            $('.fa-bars').click(function() {
+                $(this).toggleClass('fa-times');
+                $('.barra-de-navegacion').toggleClass('toggle-nav');
+            });
+
+            $(window).on('scroll load', function() {
+                $('.fa-bars').removeClass('fa-times');
+                $('.barra-de-navegacion').removeClass('toggle-nav');
+
+                $('section').each(function() {
+                    var id = $(this).attr('id');
+                    var height = $(this).height();
+                    var offset = $(this).offset().top - 200;
+                    var top = $(window).scrollTop();
+
+                    if (top >= offset && top < offset + height) {
+                        $('.barra-de-navegacion ul li a').removeClass('activo');
+                        $('.barra-de-navegacion').find('[href="#' + id + '"]').addClass('activo');
+                    }
+                });
+            });
+        });
+    </script>
 
 {% endblock %}

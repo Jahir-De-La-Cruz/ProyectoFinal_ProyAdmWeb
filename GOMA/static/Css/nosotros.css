@@ -7,13 +7,10 @@ body {
 }
 
 .container__nosotros {
-    width: 90%; 
-    margin: 20px;
+    width: 90%;
+    margin: 20px auto;  /* Centra el contenedor horizontalmente */
     overflow: hidden;
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
+    padding: 20px 10px;  /* Ajusta el padding para mayor consistencia */
 }
 
 .about-section {
@@ -21,6 +18,7 @@ body {
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;  /* Añade margen inferior para separación entre secciones */
 }
 
 .about-section h2 {
@@ -29,4 +27,49 @@ body {
 
 .about-section p {
     margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container__nosotros {
+        padding: 15px;  /* Reduce el padding en pantallas más pequeñas */
+        margin: 15px auto;  /* Ajusta el margen para pantallas más pequeñas */
+    }
+
+    .about-section {
+        padding: 15px;  /* Reduce el padding en pantallas más pequeñas */
+        border-radius: 15px;  /* Ajusta el border-radius para pantallas más pequeñas */
+    }
+
+    .about-section h2 {
+        font-size: 1.5em;  /* Ajusta el tamaño de fuente del encabezado en pantallas más pequeñas */
+    }
+
+    .about-section p {
+        font-size: 1em;  /* Ajusta el tamaño de fuente del párrafo en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .container__nosotros {
+        padding: 10px;  /* Reduce aún más el padding en pantallas muy pequeñas */
+        margin: 10px auto;  /* Ajusta el margen para pantallas muy pequeñas */
+    }
+
+    .about-section {
+        padding: 10px;  /* Reduce aún más el padding en pantallas muy pequeñas */
+        border-radius: 10px;  /* Ajusta el border-radius para pantallas muy pequeñas */
+    }
+
+    .about-section h2 {
+        font-size: 2em;  /* Ajusta el tamaño de fuente del encabezado en pantallas muy pequeñas */
+    }
+
+    .about-section p {
+        font-size: 0.9em;  /* Ajusta el tamaño de fuente del párrafo en pantallas muy pequeñas */
+    }
+
+    .about-section img {
+        width: 300px;
+    }
 }

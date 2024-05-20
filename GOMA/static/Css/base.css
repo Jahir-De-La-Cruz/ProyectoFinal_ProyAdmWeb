@@ -8,23 +8,24 @@
     font-family: 'Poppins', sans-serif !important;
 }
 
-body {
-    /* background-color: #adadad !important; */
-    background-image: linear-gradient(to bottom, rgba(143, 143, 143, 0.7), rgba(133, 133, 133, 0.7)), url('../Img/fondo.jpg');
-    /* background-position: center; */
-    background-size: cover;
-}
-
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     transition: 0.7s;
-    padding: 30px 20px;
+    padding: 20px 20px;
     z-index: 10;
+    background: transparent;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 header.abajo {
@@ -33,12 +34,10 @@ header.abajo {
 }
 
 header .logo {
-    position: relative;
     color: #fff;
     font-weight: bold;
     font-style: oblique;
     font-size: 2em;
-    /* letter-spacing: 2px; */
     transition: 1.5s;
     text-decoration: none;
 }
@@ -54,7 +53,6 @@ nav {
 }
 
 header ul {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,12 +63,10 @@ header ul li {
 }
 
 header ul li a {
-    position: relative;
     font-family: helvetica;
     margin: 0 10px;
     text-decoration: none;
     color: #fff;
-    /* letter-spacing: 2px; */
     font-weight: 600;
     transition: 0.7s;
 }
@@ -79,28 +75,65 @@ header ul li a:hover {
     text-decoration: underline;
 }
 
+/* Responsive menu styles */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
 .zonal {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: url('../Img/portada.jpg');
+    min-height: 80vh;
+    background: linear-gradient(rgba(75, 75, 75, 0.2), rgba(46, 46, 46, 0.8)), url(../Img/portada.jpg) no-repeat;
     background-size: cover;
-    background-position: center center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 0;
     overflow: hidden;
     position: relative;
 }
 
-.zonal::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+.zonal .Inicio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 8rem;
+    text-align: center;
+}
+
+.zonal .Inicio h1 {
+    font-size: 2.8rem;
+    color: #fff;
+    padding: 0 1rem;
+    text-shadow: 0 .3rem .5rem rgba(0, 0, 0, .3);
+    text-transform: uppercase;
+}
+
+.zonal .Inicio p {
+    font-size: 1rem;
+    color: #fff;
+    padding: 1rem 25rem;
+}
+
+.zonal .Inicio button {
+    height: 2.6rem;
+    width: 10rem;
+    border-radius: 1rem;
+    background: #a70c11;
+    color: #fff;
+    font-size: .8rem;
+    cursor: pointer;
+    transition: .2s;
+    box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .3);
+    margin: 4rem 0;
+    border-color: #a70c11;
+}
+
+.zonal .Inicio button:hover {
+    background: none;
+    border: .1rem solid #a70c11;
 }
 
 header.abajo .logo,
@@ -108,96 +141,7 @@ header.abajo ul li a {
     color: #fff;
 }
 
-.Gran-image {
-    position: relative;
-}
-
-.Gran-image img {
-    width: 100%;
-    height: auto;
-}
-
-.Inicio {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #ffffff;
-}
-
-.Inicio h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.Inicio p {
-    font-size: 22px;
-}
-
-/* Seccion Carrusel */
-
-.slider-frame {
-    width: 100%;
-    height: auto;
-    margin: 50px auto;
-    overflow: hidden;
-}
-  
-.slider-frame ul {
-    display: flex;
-    padding: 0;
-    width: 400%;
-    animation: slide 20s infinite alternate ease-in-out;
-}
-  
-.slider-frame li {
-    width: 100%;
-    list-style: none;
-}
-  
-.slider-frame img {
-    width: 100%;
-    height: 550px;
-    object-fit: cover;
-}
-  
-@keyframes slide {
-    0% {
-      margin-left: 0;
-    }
-  
-    20% {
-      margin-left: 0;
-    }
-  
-    25% {
-      margin-left: -100%;
-    }
-  
-    45% {
-      margin-left: -100%;
-    }
-  
-    50% {
-      margin-left: -200%;
-    }
-  
-    70% {
-      margin-left: -200%;
-    }
-  
-    75% {
-      margin-left: -300%;
-    }
-  
-    100% {
-      margin-left: -300%;
-    }
-}
-
-/* Seccion del footer */
-
+/* Footer styles */
 .pie-pagina {
     width: 100%;
     background-color: #050a0f;
@@ -207,9 +151,9 @@ header.abajo ul li a {
     width: 100%;
     max-width: 1200px;
     margin: auto;
-    display:grid;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap:50px;
+    grid-gap: 50px;
     padding: 45px 0px;
 }
 
@@ -270,11 +214,101 @@ header.abajo ul li a {
     font-size: 15px;
 }
 
-@media screen and (max-width:800px) {
-    .pie-pagina .grupo-1{
+@media screen and (max-width: 1200px) {
+    .zonal .Inicio p {
+        padding: 1rem 10rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    header {
+        background-color: #a70c11;
+    }
+
+    header ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #a70c11;
+        position: absolute;
+        top: 70px;
+        left: 0;
+    }
+
+    header ul li {
+        margin: 10px 0;
+    }
+
+    header ul li a {
+        font-size: 1.2rem;
+    }
+
+    header.active ul {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    header .logo {
+        font-size: 1.5em;
+    }
+
+    .zonal {
+        height: 60vh;
+    }
+
+    .zonal .Inicio {
+        padding-top: 16rem;
+    }
+
+    .zonal .Inicio h1 {
+        font-size: 2.4rem;
+    }
+
+    .zonal .Inicio p {
+        padding: 1rem 5rem;
+    }
+
+    .pie-pagina .grupo-1 {
         width: 90%;
         grid-template-columns: repeat(1, 1fr);
-        grid-gap:30px;
+        grid-gap: 30px;
         padding: 35px 0px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 70%;
+        overflow-x: hidden;
+    }
+
+    .zonal .Inicio {
+        padding-top: 60%;
+    }
+    
+    .zonal .Inicio h1 {
+        font-size: 3rem;
+    }
+
+    .zonal .Inicio p {
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .zonal .Inicio button {
+        width: 10rem;
+        height: 5rem;
+        font-size: 1rem;
     }
 }

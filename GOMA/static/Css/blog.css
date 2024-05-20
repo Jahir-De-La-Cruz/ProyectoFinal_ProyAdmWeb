@@ -6,13 +6,19 @@ body {
 
 .container__post {
     display: flex;
+    flex-wrap: wrap;
     margin-top: 120px;
+    padding: 0 10px;
 }
 
-.container__post .container__posts {
-    width: 50%; 
-    margin-right: 10px; 
-    margin-left: 10px;
+.container__posts,
+.container__comments {
+    flex: 1 1 100%;
+    margin: 10px;
+}
+
+.container__posts {
+    max-width: 100%;
 }
 
 .blog-post h2 {
@@ -26,5 +32,54 @@ body {
 .blog-post img {
     width: 100%;
     border-radius: 5px;
-    margin: 10px;
+    margin: 10px 0;
+}
+
+.blog-post {
+    width: 100%;
+    border: 6px solid rgb(184, 16, 16);
+    margin: 3px;
+    border-radius: 30px;
+    padding: 20px 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.seccion__boton {
+    text-align: center;
+}
+
+.seccion__boton a {
+    display: inline-block;
+    background-color: rgb(184, 16, 16);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.container__comments {
+    border: 6px solid rgb(184, 16, 16);
+    border-radius: 30px;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container__comments h2 {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .container__posts,
+    .container__comments {
+        flex: 1;
+        max-width: 48%;
+    }
+
+    .container__posts {
+        margin-right: 2%;
+    }
 }

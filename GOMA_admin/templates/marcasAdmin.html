@@ -18,27 +18,29 @@
                 <h2>Marcas</h2>
                 <button><a href="{% url 'nuevo_proveedor' %}">Añadir Marca</a></button>
             </div>
-            <table class="display" id="MiTabla">
-                <thead>
-                    <tr>
-                        <th>ID <i class="bi bi-chevron-expand"></i></th>
-                        <th>Nombre <i class="bi bi-chevron-expand"></i></th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for marca in marcas %}
+            <div class="table-responsive">
+                <table class="display" id="MiTabla">
+                    <thead>
                         <tr>
-                            <td>{{ marca.id }}</td>
-                            <td>{{ marca.nombre }}</td>
-                            <td>
-                                <a href="{% url 'editar_marca' marca.id %}"><i class="bi bi-pencil-square" id="icons"></i></a>
-                                <a href="{% url 'eliminar_marca' marca.id %}"><i class="bi bi-trash3" id="icons"></i></a>
-                            </td>
+                            <th>ID <i class="bi bi-chevron-expand"></i></th>
+                            <th>Nombre <i class="bi bi-chevron-expand"></i></th>
+                            <th>Acciones</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for marca in marcas %}
+                            <tr>
+                                <td>{{ marca.id }}</td>
+                                <td>{{ marca.nombre }}</td>
+                                <td>
+                                    <a href="{% url 'editar_marca' marca.id %}"><i class="bi bi-pencil-square" id="icons"></i></a>
+                                    <a href="{% url 'eliminar_marca' marca.id %}"><i class="bi bi-trash3" id="icons"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

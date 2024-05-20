@@ -1,5 +1,5 @@
 /* Estilo para el icono del carrito */
-header nav ul button .carrito {
+button .carrito {
     margin-left: 10px;
     color: #fff;
     font-size: 30px;
@@ -10,9 +10,9 @@ header nav ul button .carrito {
 /* Estilo para el contenedor del carrito */
 .cart-items-container {
     position: absolute;
-    top: 40px;
+    top: 90px;
     right: 10px;
-    width: 570px;
+    width: 550px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -23,6 +23,13 @@ header nav ul button .carrito {
     transition: opacity 0.3s ease;
     z-index: 1;
     overflow: auto;
+    /* Agrega display block para evitar que los elementos internos se comporten como flex items */
+    display: block;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
 }
 
 /* Mostrar el contenedor del carrito */
@@ -43,7 +50,7 @@ header nav ul button .carrito {
     background-color: #f0262d;
     color: white;
     padding: 10px 20px;
-    margin-top: 10px;
+    margin: 10px 6px;
     border: none;
     cursor: pointer;
 }
@@ -92,8 +99,8 @@ header nav ul button .carrito {
 @media (max-width: 400px) {
     /* Estilos para pantallas pequeñas */
     .cart-items-container {
-        width: 90%;
-        top: 70px;
+        width: 84%;
+        top: 110px;
         right: 5%;
         margin: 0;
         padding: 10px;

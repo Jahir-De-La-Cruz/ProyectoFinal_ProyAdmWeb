@@ -10,8 +10,8 @@
     <link rel="shortcut icon" href="../../static/Img/Logo_empresa.png" type="image/x-icon">
     
     <!-- Agreguen más hojas de estilo a esta ruta dentro de la carpeta static en caso de ser necesario -->
-    <link rel="stylesheet" href="../../static/Css/basecarrito.css?v1">
-    <link rel="stylesheet" href="../../static/Css/carrito.css?v12345678912">
+    <link rel="stylesheet" href="../../static/Css/basecarrito.css?v123">
+    <link rel="stylesheet" href="../../static/Css/carrito.css?v123456789123">
     <link rel="stylesheet" href="../../static/Css/modal.css?1">
     <link rel="stylesheet" href="../../static/Css/productos.css?v12345678">
     
@@ -28,6 +28,7 @@
             <a href="{% url 'home' %}">
                 <img src="../../static/Img/Logo_empresa.png" alt="Logo de la Empresa" class="logo" width="150px">
             </a>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         </div>
         <nav>
             <ul>
@@ -59,34 +60,32 @@
                     <li><a href="{% url 'registrar' %}">Registrarse</a></li>
                     <li><a href="{% url 'iniciar_sesion' %}">Iniciar Sesión</a></li>
                 {% endif %}
-
-                <!-- Agregar carrito de compras -->
-                <button style="background: none; border: none; outline: none;"><i class="fa-solid fa-cart-shopping carrito"></i></button>
-                <div class="cart-items-container">
-                    <div class="cart-items">
-                        <h2>Carrito de Compras</h2>
-                        <table id="cart-items-table">
-                        <thead>
-                            <tr>
-                                <th>Imagen</th>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                        </table>
-                        <p id="cart-total-price">Precio total: $0</p>
-                        <div class="botones">
-                            <button id="cart-button-buy" class="button1" type="button">Comprar</button>
-                            <button id="cart-button-clear" class="button2" type="button">Vaciar Carrito</button>
-                        </div>
-                    </div>
-                    <button class="cart-close-button" type="button"><i class="fa-solid fa-times"></i></button>
-                </div>
-
             </ul>
         </nav>
+        <!-- Agregar carrito de compras -->
+        <button style="background: none; border: none; outline: none;"><i class="fa-solid fa-cart-shopping carrito"></i></button>
+        <div class="cart-items-container">
+            <div class="cart-items">
+                <h2>Carrito de Compras</h2>
+                <table id="cart-items-table">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                </table>
+                <p id="cart-total-price">Precio total: $0</p>
+                <div class="botones">
+                    <button id="cart-button-buy" class="button1" type="button">Comprar</button>
+                    <button id="cart-button-clear" class="button2" type="button">Vaciar Carrito</button>
+                </div>
+            </div>
+            <button class="cart-close-button" type="button"><i class="fa-solid fa-times"></i></button>
+        </div>
     </header>
     
     <!-- Dentro de este apartado "iran" los contenidos de las páginas -->
@@ -126,9 +125,14 @@
     </footer>
     
     <!-- Agreguen más scripts a esta ruta de ser necesario -->
-    <script src="../../static/Js/app.js"></script>
     <script src="../../static/Js/carrito.js"></script>
     <script src="../../static/Js/comprar.js"></script>
+    <script>
+        function toggleMenu() {
+            const header = document.querySelector('header');
+            header.classList.toggle('active');
+        }
+    </script>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

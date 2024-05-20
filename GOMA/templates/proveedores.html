@@ -3,7 +3,7 @@
     e IMG irán en la carpeta static -->
 
 <!-- Esto hace mención a que va a heredar el contenido de la página "base.html" -->
-{% extends 'layouts/base.html' %}
+{% extends 'layouts/basePages.html' %}
 
 {% block title %} Proveedores {% endblock %}
 
@@ -143,12 +143,12 @@
         <div class="contenedor__afiliados">
             <div>
                 <h2>Conoce a nuestros afiliados</h2>
-                <p>¿También quieres ser ailiado? Solicita informes en nuestro <a href="{% url 'home' %}"> formulario de contacto</a>!</p>
+                <p>¿También quieres ser afiliado? Solicita informes en nuestro <a href="{% url 'home' %}"> formulario de contacto</a>!</p>
             </div>
             <div class="providers">
                 <div class="provider-item">
-                    <!-- <img src="../static/Img/prov/Jahir.png" alt="Proveedor 1"> -->
-                    <img src="../static/Img/usuario.png" alt="Proveedor">
+                    <img src="../static/Img/prov/Jahir.png" alt="Proveedor 1">
+                    <!-- <img src="../static/Img/usuario.png" alt="Proveedor"> -->
                     <p><b>Nombre:</b> Jahir De La Cruz</p>
                     <p><b>Encargado:</b> Lider MAIN y Programación del Backend</p>
                     <p style="text-align: justify;"><b>Descripción:</b> Me especialice principalmente en dar función a la lógica del negocio en el lado Backend.</p>

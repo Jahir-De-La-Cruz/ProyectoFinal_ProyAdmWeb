@@ -98,3 +98,33 @@ button:hover {
 .contenedor .contenedor__formularios {
     margin: 0px 20px !important;
 }
+
+@media (min-width: 700px) {
+    .contenedor .contenedor__formularios {
+        flex: 1;
+        max-width: 45%;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contenedor__formularios {
+        margin: 10px auto;  /* Reduce el margen en pantallas más pequeñas */
+        padding: 15px;  /* Reduce el padding en pantallas más pequeñas */
+    }
+
+    button {
+        width: 100%;  /* Haz que el botón ocupe todo el ancho disponible en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor__formularios {
+        margin: 20px;
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px;  /* Ajusta el padding del botón en pantallas muy pequeñas */
+    }
+}

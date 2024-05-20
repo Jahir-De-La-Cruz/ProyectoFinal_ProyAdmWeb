@@ -1,11 +1,18 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 .contenedor__formularios {
     margin-top: 80px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     max-width: 550px;
-    margin: 0 auto;
+    margin: 20px auto;  /* Ajusta el margen para mayor separación en los lados */
     background-color: #fff;
+    box-sizing: border-box;
 }
 
 .mensaje__Error {
@@ -36,6 +43,7 @@ input, select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .checkbox-container {
@@ -65,6 +73,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 button:hover {
@@ -80,13 +89,48 @@ button:hover {
     margin: 0 auto;
     background-color: #fff;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .contenedor {
     display: flex;
+    flex-wrap: wrap;
     text-align: left;
+    justify-content: center;
 }
 
 .contenedor .contenedor__formularios {
-    margin: 0px 20px;
+    margin: 20px;  /* Ajusta el margen para mayor separación entre formularios */
+    flex: 1 1 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 700px) {
+    .contenedor .contenedor__formularios {
+        flex: 1;
+        max-width: 45%;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contenedor__formularios {
+        margin: 10px auto;  /* Reduce el margen en pantallas más pequeñas */
+        padding: 15px;  /* Reduce el padding en pantallas más pequeñas */
+    }
+
+    button {
+        width: 100%;  /* Haz que el botón ocupe todo el ancho disponible en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor__formularios {
+        margin: 20px;
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px;  /* Ajusta el padding del botón en pantallas muy pequeñas */
+    }
 }

@@ -10,46 +10,48 @@
             <div class="table_header">
                 <h2>Usuarios</h2>
             </div>
-            <table class="display" id="MiTabla">
-                <thead>
-                    <tr>
-                        <th>Usuario <i class="bi bi-chevron-expand"></i></th>
-                        <th>Email <i class="bi bi-chevron-expand"></i></th>
-                        <th>Fecha Registro <i class="bi bi-chevron-expand"></i></th>
-                        <th>Último Login <i class="bi bi-chevron-expand"></i></th>
-                        <th>Superusuario <i class="bi bi-chevron-expand"></i></th>
-                        <th>Staff <i class="bi bi-chevron-expand"></i></th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for cliente in clientes %}
-                            <tr>
-                            <td>{{ cliente.username }}</td>
-                            <td>{{ cliente.email }}</td>
-                            <td>{{ cliente.date_joined }}</td>
-                            <td>{{ cliente.last_login }}</td>
-                            <td>
-                                {% if cliente.is_superuser == False %}
-                                    <i class="bi bi-x-circle-fill" style="color: #FF0000;"></i>
-                                {% else %}
-                                    <i class="bi bi-check-circle-fill" style="color: #0FFF00;"></i>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if cliente.is_staff == False %}
-                                    <i class="bi bi-x-circle-fill" style="color: #FF0000;"></i>
-                                {% else %}
-                                    <i class="bi bi-check-circle-fill" style="color: #0FFF00;"></i>
-                                {% endif %}
-                            </td>
-                            <td>
-                                <a href="{% url 'eliminar_cliente' cliente.id %}"><i class="bi bi-trash3" id="icons"></i></a>
-                            </td>
+            <div class="table-responsive">
+                <table class="display" id="MiTabla">
+                    <thead>
+                        <tr>
+                            <th>Usuario <i class="bi bi-chevron-expand"></i></th>
+                            <th>Email <i class="bi bi-chevron-expand"></i></th>
+                            <th>Fecha Registro <i class="bi bi-chevron-expand"></i></th>
+                            <th>Último Login <i class="bi bi-chevron-expand"></i></th>
+                            <th>Superusuario <i class="bi bi-chevron-expand"></i></th>
+                            <th>Staff <i class="bi bi-chevron-expand"></i></th>
+                            <th>Acciones</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for cliente in clientes %}
+                                <tr>
+                                <td>{{ cliente.username }}</td>
+                                <td>{{ cliente.email }}</td>
+                                <td>{{ cliente.date_joined }}</td>
+                                <td>{{ cliente.last_login }}</td>
+                                <td>
+                                    {% if cliente.is_superuser == False %}
+                                        <i class="bi bi-x-circle-fill" style="color: #FF0000;"></i>
+                                    {% else %}
+                                        <i class="bi bi-check-circle-fill" style="color: #0FFF00;"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if cliente.is_staff == False %}
+                                        <i class="bi bi-x-circle-fill" style="color: #FF0000;"></i>
+                                    {% else %}
+                                        <i class="bi bi-check-circle-fill" style="color: #0FFF00;"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'eliminar_cliente' cliente.id %}"><i class="bi bi-trash3" id="icons"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
