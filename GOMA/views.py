@@ -296,6 +296,12 @@ class BuscarProductosView(View):
         return JsonResponse(detalles, safe=False)
     
 class ConfirmacionCompraView(LoginRequiredMixin, View):
+    login_url = '/iniciar_sesion/'
+
+    def handle_no_permission(self):
+        messages.error(self.request, "Debe iniciar sesión para realizar una compra.")
+        return redirect(self.login_url)
+    
     def get(self, request):
         return render(request, 'confirmar_compra.html')
     
